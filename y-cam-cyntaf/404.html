@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found | Y Cam Cyntaf</title>
+
+  <link rel="stylesheet" href="/y-cam-cyntaf/assets/css/styles.css" />
+
+  <!-- Auto redirect after 6 seconds -->
+  <meta http-equiv="refresh" content="6; url=/y-cam-cyntaf/" />
+</head>
+
+<body>
+  <div id="site-shell" class="pageshell">
+    <div data-page-content data-sidebar="false">
+
+      <div class="pagepanel">
+        <div class="pagepanel-inner" style="text-align:center;">
+
+          <h1>We could not find that page</h1>
+
+          <p class="lead" style="max-width:70ch; margin:0 auto 12px;">
+            It looks like the link has been typed slightly differently, or the page has moved.
+            No stress. You can return to the course hub and continue from there.
+          </p>
+
+          <p class="small" style="max-width:70ch; margin:0 auto 18px;">
+            You will be redirected automatically in a few seconds.
+            If not, use the button below.
+          </p>
+
+          <!-- Show mistyped URL -->
+          <p class="small" id="bad-url" style="margin-bottom:18px; opacity:0.7;"></p>
+
+          <div class="cta-row" style="justify-content:center;">
+            <a class="cta" href="/y-cam-cyntaf/">Back to the course hub</a>
+            <a class="cta" href="/y-cam-cyntaf/support/">Support and contact</a>
+          </div>
+
+          <p class="small" style="margin-top:22px;">
+            If you were trying to reach a session, please start from the hub and choose Session 1–6.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Show the incorrect URL -->
+  <script>
+    const badUrl = document.getElementById("bad-url");
+    if (badUrl) {
+      badUrl.textContent = "Tried to open: " + window.location.pathname;
+    }
+  </script>
+
+  <script src="/y-cam-cyntaf/assets/js/layout.js"></script>
+  <script src="/y-cam-cyntaf/assets/js/main.js"></script>
+</body>
+</html>
