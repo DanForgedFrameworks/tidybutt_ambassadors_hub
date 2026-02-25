@@ -179,3 +179,37 @@
 
   window.dispatchEvent(new Event("layout:ready"));
 })();
+(function addFavicons() {
+  const base = "/y-cam-cyntaf";
+
+  // Do not add twice
+  const already =
+    document.querySelector('link[rel="icon"]') ||
+    document.querySelector('link[rel="shortcut icon"]') ||
+    document.querySelector('link[rel="apple-touch-icon"]') ||
+    document.querySelector('link[rel="manifest"]');
+
+  if (already) return;
+
+  const head = document.head;
+  if (!head) return;
+
+  const links = [
+    { rel: "icon", type: "image/png", sizes: "96x96", href: `${base}/favicon-96x96.png` },
+    { rel: "icon", type: "image/svg+xml", href: `${base}/favicon.svg` },
+    { rel: "shortcut icon", href: `${base}/favicon.ico` },
+    { rel: "apple-touch-icon", sizes: "180x180", href: `${base}/apple-touch-icon.png` },
+    { rel: "manifest", href: `${base}/site.webmanifest` }
+  ];
+
+  links.forEach(attrs => {
+    const link = document.createElement("link");
+    Object.entries(attrs).forEach(([k, v]) => link.setAttribute(k, v));
+    head.appendChild(link);
+  });
+
+  const meta = document.createElement("meta");
+  meta.setAttribute("name", "apple-mobile-web-app-title");
+  meta.setAttribute("content", "Y Cam Cyntaf");
+  head.appendChild(meta);
+})();
