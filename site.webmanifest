@@ -1,0 +1,21 @@
+{
+  "name": "Y Cam Cyntaf",
+  "short_name": "YCamCyntaf",
+  "icons": [
+    {
+      "src": "/https://danforgedframeworks.github.io/y-cam-cyntaf/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/https://danforgedframeworks.github.io/y-cam-cyntaf/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#5a56d8",
+  "background_color": "#5a56d8",
+  "display": "standalone"
+}
