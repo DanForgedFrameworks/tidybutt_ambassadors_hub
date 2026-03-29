@@ -32,7 +32,7 @@
           len: 12 + Math.random() * 18,
           speed: 4.6 + Math.random() * 3.4,
           drift: -0.2 + Math.random() * 0.35,
-          alpha: 0.22 + Math.random() * 0.18
+          alpha: 0.46 + Math.random() * 0.24
         };
       }
 
@@ -71,8 +71,8 @@
           x,
           y,
           r: 2,
-          alpha: 0.30 + Math.random() * 0.10,
-          line: 1.0 + Math.random() * 0.4
+          alpha: 0.48 + Math.random() * 0.18,
+          line: 1.3 + Math.random() * 0.5
         });
       }
       function drawRain() {
@@ -81,7 +81,7 @@
           ctx.moveTo(drop.x, drop.y);
           ctx.lineTo(drop.x + drop.drift * 4, drop.y + drop.len);
           ctx.strokeStyle = `rgba(255,255,255,${drop.alpha})`;
-          ctx.lineWidth = 1;
+          ctx.lineWidth = 1.35;
           ctx.stroke();
 
           drop.x += drop.drift;
@@ -120,7 +120,7 @@
               0,
               Math.PI * 2
             );
-            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.05, 0)})`;
+            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.07, 0)})`;
             ctx.lineWidth = ripple.line;
             ctx.stroke();
           }
