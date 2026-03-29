@@ -13,13 +13,14 @@
       let height = 0;
       let drops = [];
       let ripples = [];
+      let leaves = [];
       let frame = 0;
       let animationId = null;
 
       function resize() {
         const rect = parent.getBoundingClientRect();
         width = Math.max(10, Math.floor(rect.width));
-        height = Math.max(320, Math.floor(parent.scrollHeight || rect.height || 320));
+        height = Math.max(340, Math.floor(parent.scrollHeight || rect.height || 340));
         canvas.width = width;
         canvas.height = height;
       }
@@ -35,12 +36,32 @@
         };
       }
 
+      function makeLeaf() {
+        return {
+          x: -60 - Math.random() * 160,
+          y: Math.random() * height,
+          size: 7 + Math.random() * 10,
+          dx: 0.35 + Math.random() * 0.45,
+          dy: -0.05 + Math.random() * 0.10,
+          sway: Math.random() * Math.PI * 2,
+          rot: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.5 ? "rgba(240,136,56,0.10)" : "rgba(107,32,210,0.08)"
+        };
+      }
+
       function seed() {
         drops = [];
         ripples = [];
-        const count = Math.max(18, Math.floor(width / 70));
-        for (let i = 0; i < count; i += 1) {
+        leaves = [];
+        const dropCount = Math.max(18, Math.floor(width / 70));
+        const leafCount = Math.max(5, Math.floor(width / 260));
+
+        for (let i = 0; i < dropCount; i += 1) {
           drops.push(makeDrop(Math.random() * height));
+        }
+
+        for (let i = 0; i < leafCount; i += 1) {
+          leaves.push(makeLeaf());
         }
       }
 
@@ -78,7 +99,15 @@
         ripples.forEach((ripple) => {
           for (let i = 0; i < 3; i += 1) {
             ctx.beginPath();
-            ctx.ellipse(ripple.x, ripple.y, ripple.r + i * 7, (ripple.r + i * 7) * 0.34, 0, 0, Math.PI * 2);
+            ctx.ellipse(
+              ripple.x,
+              ripple.y,
+              ripple.r + i * 7,
+              (ripple.r + i * 7) * 0.34,
+              0,
+              0,
+              Math.PI * 2
+            );
             ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.05, 0)})`;
             ctx.lineWidth = ripple.line;
             ctx.stroke();
@@ -89,6 +118,30 @@
         });
 
         ripples = ripples.filter((r) => r.alpha > 0.025 && r.r < 42);
+      }
+
+      function drawLeaf(leaf) {
+        const swayX = Math.sin(frame * 0.018 + leaf.sway) * 6;
+        const swayY = Math.cos(frame * 0.015 + leaf.sway) * 2;
+        const swayR = Math.sin(frame * 0.012 + leaf.sway) * 0.35;
+
+        ctx.save();
+        ctx.translate(leaf.x + swayX, leaf.y + swayY);
+        ctx.rotate(leaf.rot + swayR);
+        ctx.fillStyle = leaf.color;
+        ctx.beginPath();
+        ctx.moveTo(0, -leaf.size * 0.9);
+        ctx.quadraticCurveTo(leaf.size * 0.9, -leaf.size * 0.1, 0, leaf.size);
+        ctx.quadraticCurveTo(-leaf.size * 0.9, -leaf.size * 0.1, 0, -leaf.size * 0.9);
+        ctx.fill();
+        ctx.restore();
+
+        leaf.x += leaf.dx;
+        leaf.y += leaf.dy;
+
+        if (leaf.x > width + 80 || leaf.y < -40 || leaf.y > height + 40) {
+          Object.assign(leaf, makeLeaf());
+        }
       }
 
       function render() {
@@ -104,6 +157,7 @@
 
         drawRain();
         drawRipples();
+        leaves.forEach(drawLeaf);
 
         animationId = requestAnimationFrame(render);
       }
@@ -144,7 +198,8 @@
       items.forEach((item) => {
         const btn = item.querySelector(".tb-accordion-trigger");
         const panel = item.querySelector(".tb-accordion-panel");
-        const inner = item.querySelector(".reveal-stagger, .tb-chip-cloud");
+        const revealTarget =
+          item.querySelector(".tb-chip-cloud") || item.querySelector(".reveal-stagger");
 
         if (!btn || !panel) return;
 
@@ -152,7 +207,9 @@
         btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
         prepAccordionPanel(panel, isOpen);
 
-        if (isOpen) restartReveal(inner);
+        if (isOpen) {
+          restartReveal(revealTarget);
+        }
 
         btn.addEventListener("click", () => {
           const currentlyOpen = item.classList.contains("is-open");
@@ -162,7 +219,7 @@
           prepAccordionPanel(panel, nowOpen);
 
           if (nowOpen) {
-            restartReveal(inner);
+            restartReveal(revealTarget);
             setTimeout(() => prepAccordionPanel(panel, true), 320);
           }
         });
@@ -181,8 +238,11 @@
 
     carousels.forEach((carousel) => {
       const cards = Array.from(carousel.querySelectorAll(".role-card"));
-      const prev = carousel.parentElement.querySelector("[data-carousel-prev]");
-      const next = carousel.parentElement.querySelector("[data-carousel-next]");
+      const parentWrap = carousel.closest(".roles-carousel-wrap");
+      if (!parentWrap) return;
+
+      const prev = parentWrap.querySelector("[data-carousel-prev]");
+      const next = parentWrap.querySelector("[data-carousel-next]");
       if (!cards.length || !prev || !next) return;
 
       let index = 0;
@@ -192,10 +252,15 @@
           card.classList.remove("is-active", "is-left", "is-right", "is-hidden");
           card.removeAttribute("tabindex");
 
-          if (i === index) card.classList.add("is-active");
-          else if (i === (index - 1 + cards.length) % cards.length) card.classList.add("is-left");
-          else if (i === (index + 1) % cards.length) card.classList.add("is-right");
-          else card.classList.add("is-hidden");
+          if (i === index) {
+            card.classList.add("is-active");
+          } else if (i === (index - 1 + cards.length) % cards.length) {
+            card.classList.add("is-left");
+          } else if (i === (index + 1) % cards.length) {
+            card.classList.add("is-right");
+          } else {
+            card.classList.add("is-hidden");
+          }
 
           if (!card.classList.contains("is-hidden")) {
             card.setAttribute("tabindex", "0");
@@ -226,7 +291,7 @@
     });
   }
 
-  function initOpenTriggeredChipCloud() {
+  function initClouds() {
     document.querySelectorAll(".tb-chip-cloud").forEach((cloud) => {
       cloud.classList.remove("is-revealing");
     });
@@ -236,7 +301,7 @@
     initAmbientCanvas();
     initAccordions();
     initRolesCarousel();
-    initOpenTriggeredChipCloud();
+    initClouds();
   }
 
   window.addEventListener("layout:ready", boot);
