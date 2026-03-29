@@ -10,974 +10,337 @@
    Tidy Butt Ambassadors Hub styles
    ========================================================= */
 
-:root{
-  --bg0:#f5f5f5;
-  --bg1:#ffffff;
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tidy Butt Ambassadors Hub | Overview</title>
+  <link rel="stylesheet" href="/tidybutt_ambassadors_hub/assets/css/styles.css" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/tidybutt_ambassadors_hub/favicon-96x96.png" />
+  <link rel="icon" type="image/svg+xml" href="/tidybutt_ambassadors_hub/favicon.svg" />
+  <link rel="shortcut icon" href="/tidybutt_ambassadors_hub/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/tidybutt_ambassadors_hub/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Tidy Butt Ambassadors Hub" />
+  <link rel="manifest" href="/tidybutt_ambassadors_hub/site.webmanifest" />
+</head>
+<body>
+  <div data-page-content data-sidebar="true" data-active="roles">
+    <section class="hero hero-ambient hero-overview">
+      <canvas class="hero-ripple-canvas" aria-hidden="true"></canvas>
 
-  --panel:#ffffff;
-  --panelTint: rgba(255,255,255,0.92);
-  --stroke:rgba(20,30,60,0.10);
-  --stroke2:rgba(20,30,60,0.16);
+      <div class="hero-content-wrap hero-overview-content">
+        <div class="hero-home-inner">
+          <div class="hero-chip">So you want to be an ambassador?</div>
+          <h1>Ambassadors Hub Overview</h1>
+          <p class="tagline">Shwmae, and thank you for being here.</p>
 
-  --tidy-orange:#ff981d;
-  --tidy-orange-strong:#F08838;
+          <div class="tb-soft-intro-card tb-soft-intro-card--embedded">
+            <p class="intro intro--wide">
+              Choosing to become an ambassador is not just about volunteering your time. It is choosing to stand alongside people, to <strong>listen</strong>, to <strong>support</strong>, to <strong>encourage</strong>, and sometimes simply to be present when someone needs another human being nearby.
+            </p>
 
-  --tidy-purple:#6b20d2;
-  --tidy-purple-pill:#5439b8;
+            <p class="intro intro--wide">
+              Being an ambassador is about connection, community, and helping people take small steps forward when things feel difficult, overwhelming, or uncertain.
+            </p>
 
-  --tidy-blue:#43a7e3;
-  --tidy-blue-pill:#279eca;
+            <p class="intro intro--wide">
+              You are not expected to be a counsellor, therapist, social worker, or rescuer. You are a supportive person within a community who helps people feel welcome, included, and not alone.
+            </p>
 
-  --text:#0b1220;
-  --muted:rgba(11,18,32,0.76);
+            <p class="intro intro--wide">
+              This document is intended to give you a high-level overview of what being an ambassador means, what you might do, and some important things to understand before getting started.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  --radius:22px;
+    <div class="overview-hero-image overview-hero-image--wide">
+      <img src="/tidybutt_ambassadors_hub/assets/img/TB_Pathway.png" alt="Abstract glowing pathway representing first steps into a supportive community." />
+    </div>
 
-  --shadowSoft: 0 18px 45px rgba(9,16,28,0.12);
-  --shadowHard: 0 22px 60px rgba(9,16,28,0.16);
+    <section class="tb-mission-card tb-contained-block" aria-labelledby="mission-title">
+      <h2 id="mission-title">Our mission</h2>
+      <blockquote>
+        “We educate, empower, and support individuals to better understand their mental health and wellbeing. Through open, honest conversations and a strong sense of community, we help people build confidence, find connection, and develop the tools to face life’s challenges. We believe good mental health is for everyone.”
+      </blockquote>
 
-  --glow: rgba(67,167,227,0.18);
-  --glowPurple: rgba(107,32,210,0.14);
+      <div class="tb-mission-under">
+        <h3 id="why-matters-title">Why this matters</h3>
+        <p>
+          Being an ambassador often starts with understanding why this matters to you.
+        </p>
 
-  --focusRing: rgba(107,32,210,0.40);
-  --focusRing2: rgba(255,152,29,0.35);
-}
+        <div class="tb-question-panel">
+          <h3>Does this resonate with you?</h3>
+          <div class="tb-question-list tb-question-list--blue" aria-label="Reflection questions">
+            <p>Does this mission resonate with you?</p>
+            <p>Have you experienced these kinds of challenges, either directly or through someone close to you?</p>
+            <p>Do you believe that conversations, community, and connection can make a real difference in someone’s life?</p>
+          </div>
 
-*{box-sizing:border-box}
-html,body{height:100%}
+          <div class="cta-row cta-row-centre">
+            <a class="cta ambassador-pulse" href="#what-is-tidybutt">If so, let’s continue</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-body{
-  margin:0;
-  color:var(--text);
-  background:
-    radial-gradient(900px 520px at 12% 12%, rgba(107,32,210,0.10), transparent 60%),
-    radial-gradient(900px 520px at 88% 18%, rgba(67,167,227,0.12), transparent 55%),
-    linear-gradient(180deg, var(--bg1), var(--bg0));
-  font-family: Aptos, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
+    <section class="tb-accordion tb-contained-block" aria-label="Ambassador overview sections">
+      <div class="tb-accordion-item is-open" id="what-is-tidybutt">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="true">What is Tidy Butt?</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner reveal-stagger">
+            <p>Tidy Butt is a community-focused organisation that aims to support people through connection, activity, conversation, and community engagement.</p>
+            <p>The focus is on helping people take positive steps, however small, towards improved wellbeing, confidence, and social connection.</p>
+            <p>Many people who engage with Tidy Butt may be experiencing:</p>
+            <ul>
+              <li>Loneliness or isolation</li>
+              <li>Anxiety or low mood</li>
+              <li>Loss of confidence</li>
+              <li>Life changes or difficult circumstances</li>
+              <li>Mental health challenges</li>
+              <li>Financial or socio-economic pressures</li>
+              <li>Periods of crisis</li>
+            </ul>
+            <p class="tb-emphasis-line">Tidy Butt is not a clinical service. It is a community, a support network, and a place where people can find connection, structure, encouragement, and opportunities to move forward.</p>
+            <p>Ambassadors are a key part of making this possible.</p>
+          </div>
+        </div>
+      </div>
 
-a{color:rgba(11,18,32,0.92)}
-a:hover{color:rgba(11,18,32,1)}
-a:focus{outline:3px solid var(--focusRing); outline-offset:3px}
+      <div class="tb-accordion-item" id="what-it-means">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="false">What does it mean to be an ambassador?</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner reveal-stagger">
+            <p>Being a Tidy Butt volunteer or ambassador isn’t just about what you do; it’s about the impact you create.</p>
+            <p>Volunteers bring energy, passion, and a shared commitment to making mental health support more accessible.</p>
+            <p>At the heart of this are a few simple ideas:</p>
+            <ul>
+              <li><strong>Community focused</strong> – Creating safe spaces for open conversations and support.</li>
+              <li><strong>Passionate about change</strong> – Helping break the stigma around mental health and supporting real change through commitment and consistency.</li>
+              <li><strong>Supportive and inclusive</strong> – Whether welcoming people at events or providing a listening ear, helping people feel valued and heard.</li>
+              <li><strong>Ready to grow and learn</strong> – Volunteering is also an opportunity for personal growth, learning new skills, meeting like-minded people, and making a difference.</li>
+            </ul>
+            <p>These are not strict requirements. They are more like the mindset and values that help someone be a good ambassador.</p>
+            <p>Being an ambassador means you represent the values, behaviour, and culture of Tidy Butt when you are interacting with the public, participants, partners, and other volunteers.</p>
+            <p>At its core, being an ambassador means:</p>
+            <ul>
+              <li>Being welcoming</li>
+              <li>Being kind</li>
+              <li>Being reliable</li>
+              <li>Being calm</li>
+              <li>Being respectful</li>
+              <li>Being inclusive</li>
+              <li>Being supportive without trying to “fix” people</li>
+              <li>Helping people feel safe and comfortable</li>
+              <li>Helping people access activities, support, and community</li>
+            </ul>
+            <p>You are not there to solve everyone’s problems. You are there to help people feel that they are not facing things alone.</p>
+          </div>
+        </div>
+      </div>
 
-.skip-link{
-  position:absolute;
-  left:-9999px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-}
-.skip-link:focus{
-  left:16px;
-  top:12px;
-  width:auto;
-  height:auto;
-  padding:10px 12px;
-  border-radius:10px;
-  background:#ffffff;
-  color:#000000;
-  z-index:9999;
-  box-shadow: var(--shadowSoft);
-}
+      <div class="tb-accordion-item" id="important-considerations">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="false">Important considerations</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner reveal-stagger">
+            <p>Some of the people you meet may be going through very difficult periods in their lives. You may hear difficult stories, see people in distress, or meet people in crisis.</p>
+            <p>It is important to understand a few key principles.</p>
+            <p class="tb-emphasis-line">You are not a rescuer.</p>
+            <p>There is a concept sometimes called the “Rescue Triangle” or Drama Triangle, which includes the rescuer, the victim, and the persecutor.</p>
+            <p>As an ambassador, you must avoid becoming the rescuer. Trying to “save” people, take responsibility for their lives, or solve their problems can be harmful to them and to you.</p>
+            <p>Your role is to:</p>
+            <ul>
+              <li>Listen</li>
+              <li>Support</li>
+              <li>Signpost</li>
+              <li>Encourage</li>
+              <li>Stay calm</li>
+              <li>Maintain boundaries</li>
+            </ul>
+            <p>Not to fix, rescue, or take responsibility for someone else’s life.</p>
+            <p>You may hear about:</p>
+            <ul>
+              <li>Bereavement</li>
+              <li>Abuse</li>
+              <li>Addiction</li>
+              <li>Suicide attempts</li>
+              <li>Self-harm</li>
+              <li>Homelessness</li>
+              <li>Financial crisis</li>
+              <li>Relationship breakdown</li>
+            </ul>
+            <p>This can be emotionally difficult. It is important that you do not carry this alone, that you speak to the Tidy Butt team if something is worrying you, that you understand your limits, that you take breaks when needed, and that you look after your own wellbeing.</p>
+            <p>This is sometimes called vicarious trauma or secondary trauma. Hearing other people’s trauma can affect you too.</p>
+            <p>If someone is in crisis, ambassadors are not expected to manage crisis situations alone. Stay calm, stay with the person if safe to do so, and contact the appropriate support.</p>
+          </div>
+        </div>
+      </div>
 
-.pageshell{min-height:100vh; display:flex; flex-direction:column}
+      <div class="tb-accordion-item" id="boundaries">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="false">Boundaries and looking after yourself</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner reveal-stagger">
+            <p>To be a good ambassador, you must also look after yourself.</p>
+            <p>Important boundaries include:</p>
+            <ul>
+              <li>You are allowed to say no</li>
+              <li>You are allowed to take breaks</li>
+              <li>You are not available 24/7</li>
+              <li>You should not give out personal contact details unless agreed</li>
+              <li>You should not promise things you cannot deliver</li>
+              <li>You should not take responsibility for someone else’s safety alone</li>
+              <li>You should ask for help when you need it</li>
+            </ul>
+            <p class="tb-emphasis-line">A burnt-out ambassador cannot help anyone. A supported ambassador can help many people.</p>
+          </div>
+        </div>
+      </div>
 
-.topstrip{
-  background: linear-gradient(90deg, var(--tidy-orange-strong), var(--tidy-orange));
-  color:#ffffff;
-}
-.topstrip-inner{
-  max-width:none;
-  width:100%;
-  margin:0;
-  padding:10px 16px;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  font-weight:800;
-}
-.topstrip a{
-  color:#ffffff;
-  text-decoration:none;
-  border-bottom:2px solid transparent;
-  font-weight:900;
-}
-.topstrip a:hover{
-  border-bottom-color:#ffffff;
-}
+      <div class="tb-accordion-item" id="culture-community">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="false">The culture: community, not hierarchy</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner reveal-stagger">
+            <p>Tidy Butt is not about hierarchy and titles. It is about people working together, supporting each other, and building something that helps others.</p>
+            <p>We want ambassadors to feel:</p>
+            <ul>
+              <li>Part of a team</li>
+              <li>Supported</li>
+              <li>Trusted</li>
+              <li>Comfortable asking questions</li>
+              <li>Comfortable saying when something is difficult</li>
+              <li>Proud of what they are part of</li>
+            </ul>
+            <p>This is a community and a tribe effort. We support each other, learn from each other, and build something together that is bigger than any one person.</p>
+          </div>
+        </div>
+      </div>
 
-.siteheader{
-  background: linear-gradient(90deg, var(--tidy-purple), var(--tidy-blue));
-  box-shadow: 0 12px 35px rgba(9,16,28,0.14);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-.siteheader-inner{
-  max-width:none;
-  width:100%;
-  margin:0;
-  padding:14px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
+      <div class="tb-accordion-item" id="possible-roles">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="false">Possible ambassador roles</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner reveal-stagger">
+            <p>Ambassadors may be involved in different types of activities depending on their interests, confidence, and availability. These roles may overlap, and people may do more than one.</p>
+            <p>Not everyone has to do everything. People can contribute in ways that suit their skills, confidence, and personal situation.</p>
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  text-decoration:none;
-  color:#ffffff;
-}
-.brand-logo{
-  width:86px;
-  height:86px;
-  border-radius:18px;
-  background: rgba(255,255,255,0.14);
-  padding:10px;
-  box-shadow: 0 14px 34px rgba(0,0,0,0.18);
-}
-.brand-title{
-  font-size:28px;
-  font-weight:950;
-  letter-spacing:0.2px;
-  color:#ffffff;
-}
-.brand-subtitle{
-  font-size:15px;
-  font-weight:750;
-  font-style:italic;
-  opacity:0.92;
-  color:#ffffff;
-}
+            <div class="roles-carousel-wrap roles-carousel-wrap--inside">
+              <div class="roles-carousel-heading">
+                <div>
+                  <h3>Possible ambassador roles</h3>
+                  <p class="small">Explore the different ways ambassadors may support Tidy Butt and its community.</p>
+                </div>
+                <div class="roles-carousel-controls">
+                  <button type="button" data-carousel-prev>Previous</button>
+                  <button type="button" data-carousel-next>Next</button>
+                </div>
+              </div>
 
-.topnav{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-.topnav-pill{
-  text-decoration:none;
-  color:#ffffff;
-  font-weight:900;
-  padding:10px 14px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.18);
-  background: rgba(84,57,184,0.92);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.14);
-  transition: transform 120ms ease, filter 120ms ease, background 120ms ease;
-}
-.topnav-pill:hover{
-  filter: brightness(1.06);
-  transform: translateY(-1px);
-}
-.topnav-pill:active{transform: translateY(0)}
-.topnav-pill.is-active{
-  background: rgba(84,57,184,1);
-  border-color: rgba(255,255,255,0.28);
-}
+              <div class="role-carousel" data-role-carousel>
+                <article class="role-card">
+                  <div class="role-card-title-wrap">
+                    <h3>Community Activity Ambassador</h3>
+                  </div>
+                  <p>Supporting community activities and sessions, welcoming new people, helping people feel comfortable in groups, and encouraging participation.</p>
+                  <ul>
+                    <li>Supporting community activities and sessions</li>
+                    <li>Welcoming new people</li>
+                    <li>Helping people feel comfortable in groups</li>
+                    <li>Encouraging participation</li>
+                    <li>Helping with basic organisation on the day</li>
+                  </ul>
+                </article>
 
-.pagemain{flex:1}
-.pagelayout{
-  max-width:none;
-  width:100%;
-  margin:0;
-  padding:22px 16px 44px;
-  display:grid;
-  gap:22px;
-}
-.pagelayout.no-sidebar{grid-template-columns: 1fr}
-.pagelayout.has-sidebar{
-  grid-template-columns: 300px minmax(0, 1fr);
-  align-items:start;
-}
+                <article class="role-card">
+                  <div class="role-card-title-wrap">
+                    <h3>Outreach or Awareness Ambassador</h3>
+                  </div>
+                  <p>Helping people understand what Tidy Butt offers and sharing information about available support and opportunities.</p>
+                  <ul>
+                    <li>Speaking to community groups</li>
+                    <li>Sharing information about Tidy Butt</li>
+                    <li>Attending events or community days</li>
+                    <li>Helping people understand what support is available</li>
+                  </ul>
+                </article>
 
-.pagepanel{
-  width:100%;
-  background: var(--panelTint);
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  overflow:hidden;
-  box-shadow:
-    var(--shadowHard),
-    0 0 0 1px rgba(0,0,0,0.02),
-    0 0 34px var(--glow);
-}
-.pagepanel-inner{padding:32px}
+                <article class="role-card">
+                  <div class="role-card-title-wrap">
+                    <h3>Events and Support Ambassador</h3>
+                  </div>
+                  <p>Supporting events, helping them run smoothly, and helping participants feel safe, welcome, and included.</p>
+                  <ul>
+                    <li>Helping run events</li>
+                    <li>Supporting fundraising activities</li>
+                    <li>Helping with logistics and organisation</li>
+                    <li>Supporting participants during events</li>
+                  </ul>
+                </article>
 
-.coursehub{
-  position: sticky;
-  top: 110px;
-  align-self:start;
-  height: fit-content;
-}
-.coursehub-inner{
-  background: rgba(255,255,255,0.92);
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  padding:16px;
-  box-shadow:
-    var(--shadowSoft),
-    0 0 28px var(--glowPurple);
-}
-.coursehub-title{
-  margin:0 0 10px 0;
-  color:rgba(11,18,32,0.70);
-  font-weight:950;
-}
-.coursehub-list{
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.coursehub-link{
-  display:block;
-  padding:12px 12px;
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  border:1px solid transparent;
-  background: rgba(84,57,184,0.06);
-  transition: background 120ms ease, transform 120ms ease, border-color 120ms ease;
-}
-.coursehub-link:hover{
-  background: rgba(84,57,184,0.10);
-  border-color: rgba(107,32,210,0.25);
-  transform: translateY(-1px);
-}
-.coursehub-link:active{transform: translateY(0)}
+                <article class="role-card">
+                  <div class="role-card-title-wrap">
+                    <h3>Admin or Coordination Support</h3>
+                  </div>
+                  <p>Helping behind the scenes with communication, coordination, planning, and practical organisation.</p>
+                  <ul>
+                    <li>Helping with communication</li>
+                    <li>Supporting coordination of activities</li>
+                    <li>Helping organise sessions or resources</li>
+                    <li>Supporting behind-the-scenes work</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-h1{margin:0 0 10px 0; font-size:36px; letter-spacing:0.1px}
-h2{margin:18px 0 10px 0; font-size:22px}
-h3{margin:0 0 10px 0; font-size:18px}
-p{margin:0 0 12px 0; color:var(--muted); line-height:1.6}
-.small{font-size:13px; color:var(--muted)}
-ul{margin:0 0 12px 18px; color:var(--muted)}
-li{margin:0 0 6px 0}
+      <div class="tb-accordion-item" id="how-they-help">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="false">How ambassadors make a difference</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner">
+            <p>Ambassadors make a difference in ways that are often small but very important.</p>
+            <div class="tb-chip-cloud">
+              <span class="tb-chip">Talking to someone who has not spoken to anyone all week</span>
+              <span class="tb-chip">Helping someone attend their first group or activity</span>
+              <span class="tb-chip">Listening to someone who is having a difficult time</span>
+              <span class="tb-chip">Encouraging someone who lacks confidence</span>
+              <span class="tb-chip">Helping someone feel part of a community</span>
+              <span class="tb-chip">Helping events run smoothly so people can attend safely</span>
+              <span class="tb-chip">Being a familiar, friendly face</span>
+              <span class="tb-chip">Helping someone take their first small step forward</span>
+            </div>
+            <p>You may not always see the impact you have, but small actions can make a very big difference to someone else’s life.</p>
+          </div>
+        </div>
+      </div>
 
-.hero{
-  padding:22px 18px 10px;
-  text-align:left;
-}
-.hero h1{margin-bottom:6px}
-.hero .tagline{
-  font-style:italic;
-  margin:0 0 12px;
-  max-width:980px;
-  color:rgba(11,18,32,0.70);
-}
-.hero .intro{
-  max-width:980px;
-  margin:0 0 10px;
-  font-size:16px;
-}
-.hero .intro strong{color:#000}
-.hero .tip{max-width:980px; margin:0; color:rgba(11,18,32,0.66)}
-.hero a{color:rgba(11,18,32,0.92); text-decoration:underline; text-underline-offset:3px}
-.hero a:hover{opacity:0.95}
+      <div class="tb-accordion-item" id="first-steps">
+        <button class="tb-accordion-trigger tb-accordion-trigger-gradient" type="button" aria-expanded="false">First steps</button>
+        <div class="tb-accordion-panel">
+          <div class="tb-accordion-inner reveal-stagger">
+            <p>Thank you for taking the time to read this and to consider becoming an ambassador.</p>
+            <p>If this still sings to you, and you feel you have the time, the energy, and the capacity to support others, we would love to talk to you more about becoming part of this.</p>
+            <p>Even small actions can change someone’s day, someone’s week, or sometimes someone’s life.</p>
+            <div class="cta-row">
+              <a class="cta ambassador-pulse" href="mailto:hello@tidybutt.co.uk?subject=Expression%20of%20interest%20%E2%80%93%20Tidy%20Butt%20Ambassador&body=Introduce%20yourself%3A%0A%0AWhy%20would%20you%20like%20to%20get%20involved%3F%0A%0ATell%20us%20a%20bit%20about%20your%20interests%2C%20skills%2C%20or%20any%20ideas%20you%20have%3A%0A%0A">Express interest by email</a>
+            </div>
+            <p class="small">Diolch yn fawr. We are glad you are here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-.hero-ambient{
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  min-height: 340px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.70)),
-    radial-gradient(circle at top left, rgba(107,32,210,0.12), transparent 42%),
-    radial-gradient(circle at top right, rgba(67,167,227,0.12), transparent 42%);
-  border: 1px solid rgba(20,30,60,0.10);
-  box-shadow: var(--shadowHard), 0 0 34px var(--glow);
-}
-.hero-ripple-canvas{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 0;
-  pointer-events: none;
-}
-.hero-content-wrap,
-.tb-soft-intro-card,
-.hero h1,
-.hero .tagline,
-.hero .intro,
-.hero-chip{
-  position: relative;
-  z-index: 1;
-}
-.hero-chip{
-  display: inline-flex;
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto 18px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.88);
-  border: 1px solid rgba(20,30,60,0.10);
-  box-shadow: var(--shadowSoft), 0 0 18px var(--glow);
-  font-weight: 950;
-  color: #0b1220;
-}
+    <section class="tb-download-subtle tb-contained-block" aria-labelledby="overview-download-title">
+      <p id="overview-download-title" class="small">
+        If you prefer to read this offline, as a PDF, or with your own screen reader tools, you can open the overview here:
+        <a href="/tidybutt_ambassadors_hub/assets/downloads/Ambassador%20Overview%20-%20Tidy%20Butt.pdf" target="_blank" rel="noopener">Download the overview PDF</a>
+      </p>
+    </section>
+  </div>
 
-.pageshell[data-page-key="about"] .hero,
-.pageshell[data-page-key="home"] .hero{
-  text-align: center;
-}
-.pageshell[data-page-key="about"] .hero h1,
-.pageshell[data-page-key="home"] .hero h1{
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 20ch;
-}
-.pageshell[data-page-key="about"] .hero .tagline,
-.pageshell[data-page-key="home"] .hero .tagline,
-.pageshell[data-page-key="about"] .hero .intro,
-.pageshell[data-page-key="home"] .hero .intro{
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.tilegrid{
-  margin-top:18px;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:18px;
-}
-.tile{
-  position:relative;
-  border-radius: 22px;
-  overflow:hidden;
-  border:1px solid rgba(20,30,60,0.12);
-  box-shadow:
-    var(--shadowHard),
-    0 0 34px var(--glow);
-  text-decoration:none;
-  color:#ffffff;
-  min-height: 340px;
-  background: rgba(255,255,255,0.04);
-  transform: translateZ(0);
-}
-.tile img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transform: scale(1.02);
-  transition: transform 200ms ease, filter 200ms ease;
-  filter: saturate(1.05);
-}
-.tile::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.56) 70%, rgba(0,0,0,0.76) 100%);
-}
-.tile:hover img{transform: scale(1.06)}
-.tile:active img{transform: scale(1.04)}
-.tiletext{
-  position:absolute;
-  left:18px;
-  right:18px;
-  bottom:16px;
-  z-index:2;
-}
-.tiletext .title{font-size:20px; font-weight:950; margin:0 0 6px; color:#fff}
-.tiletext .desc{margin:0; color:rgba(255,255,255,0.92); line-height:1.35; font-size:15px}
-
-.sessionsblock{
-  margin-top:16px;
-  padding-top:14px;
-  border-top: 1px solid rgba(20,30,60,0.10);
-  text-align:left;
-}
-.sessionlinks{
-  margin-top:10px;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:12px;
-}
-.sessionlinks a{
-  text-decoration:none;
-  font-weight:950;
-  border-radius: 999px;
-  padding:12px 14px;
-  background: var(--tidy-orange);
-  color:#1b1205;
-  border:1px solid rgba(0,0,0,0.10);
-  box-shadow: var(--shadowSoft);
-  transition: transform 120ms ease, filter 120ms ease;
-}
-.sessionlinks a:hover{transform: translateY(-1px); filter: brightness(0.98)}
-.sessionlinks a:active{transform: translateY(0)}
-
-.session-summary{
-  padding:20px 20px 16px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.90);
-  border: 1px solid rgba(20,30,60,0.10);
-  box-shadow:
-    var(--shadowSoft),
-    0 0 28px var(--glow);
-}
-.session-summary p{margin-bottom:8px}
-
-.cta-row{
-  margin-top:16px;
-  padding-top:14px;
-  border-top:1px solid rgba(20,30,60,0.10);
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.cta-row-centre{
-  justify-content: center;
-}
-
-.pagepanel-inner a.cta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  text-decoration:none;
-  font-weight:950;
-  border-radius:999px;
-  padding:12px 16px;
-  background: var(--tidy-orange);
-  color:#1b1205;
-  border:1px solid rgba(0,0,0,0.10);
-  box-shadow: var(--shadowSoft);
-  transition: transform 120ms ease, filter 120ms ease;
-}
-.pagepanel-inner a.cta:hover{transform: translateY(-1px); filter: brightness(0.98)}
-.pagepanel-inner a.cta:active{transform: translateY(0)}
-.pagepanel-inner a.cta:focus-visible{
-  outline: 3px solid var(--focusRing2);
-  outline-offset: 2px;
-}
-
-.pagepanel-inner a.cta.ambassador-pulse{
-  position: relative;
-  animation: ambassadorPulse 2.6s ease-in-out infinite;
-}
-.pagepanel-inner a.cta.ambassador-pulse:hover{
-  transform: translateY(-2px) scale(1.02);
-  filter: brightness(0.98);
-}
-.pagepanel-inner a.cta.ambassador-pulse:focus-visible{
-  outline: 3px solid var(--focusRing2);
-  outline-offset: 3px;
-}
-@keyframes ambassadorPulse{
-  0%{
-    box-shadow: 0 10px 22px rgba(17,24,39,0.10), 0 0 0 0 rgba(240,136,56,0.20);
-  }
-  70%{
-    box-shadow: 0 10px 22px rgba(17,24,39,0.10), 0 0 0 14px rgba(240,136,56,0);
-  }
-  100%{
-    box-shadow: 0 10px 22px rgba(17,24,39,0.10), 0 0 0 0 rgba(240,136,56,0);
-  }
-}
-
-.express-interest-float{
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 1200;
-}
-.express-interest-float a{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-weight: 950;
-  border-radius: 999px;
-  padding: 14px 18px;
-  background: var(--tidy-orange);
-  color: #1b1205;
-  border: 1px solid rgba(0,0,0,0.10);
-  box-shadow: 0 14px 28px rgba(9,16,28,0.18);
-  transition: transform 120ms ease, filter 120ms ease;
-}
-.express-interest-float a:hover{
-  transform: translateY(-2px);
-  filter: brightness(0.98);
-}
-.express-interest-float a:focus-visible{
-  outline: 3px solid var(--focusRing2);
-  outline-offset: 3px;
-}
-
-.sitefooter{
-  margin-top:26px;
-  background: linear-gradient(90deg, rgba(107,32,210,0.12), rgba(67,167,227,0.12));
-  border-top:1px solid rgba(20,30,60,0.10);
-}
-.sitefooter-inner{
-  max-width:none;
-  width:100%;
-  margin:0;
-  padding:18px 16px 22px;
-}
-.footergrid{
-  display:grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap:16px;
-  align-items:start;
-}
-.footerlogo{
-  width:140px;
-  height:auto;
-  display:block;
-  margin-bottom:8px;
-}
-.footerlinks{list-style:none; padding:0; margin:0}
-.footerlinks li{margin:0 0 8px 0}
-.footerlinks a{
-  color:rgba(11,18,32,0.82);
-  text-decoration:none;
-  border-bottom:2px solid transparent;
-}
-.footerlinks a:hover{border-bottom-color: rgba(11,18,32,0.50)}
-.footerfineprint{
-  margin-top:14px;
-  padding-top:12px;
-  border-top:1px solid rgba(20,30,60,0.10);
-}
-
-.ambassador-cta-block{
-  margin-top: 22px;
-  text-align: center;
-}
-.ambassador-cta-block h2{
-  margin-bottom: 10px;
-}
-.ambassador-cta-block p{
-  max-width: 70ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-.ambassador-cta-block--autosize{
-  width: fit-content;
-  max-width: min(100%, 920px);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 28px;
-  padding-right: 28px;
-}
-.ambassador-tilegrid{
-  margin-top: 22px;
-}
-
-.tb-contained-block{
-  max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.tb-soft-intro-card{
-  max-width: 920px;
-  margin: 22px auto 0;
-  padding: 20px 22px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.88);
-  border: 1px solid rgba(20,30,60,0.10);
-  box-shadow: var(--shadowSoft), 0 0 28px var(--glow);
-}
-.intro--wide{
-  max-width: 94ch;
-}
-
-.overview-hero-image--wide{
-  max-width: 1080px;
-  margin: 20px auto 0;
-}
-.overview-hero-image--wide img{
-  width: 100%;
-  max-height: none;
-  aspect-ratio: 16 / 6.6;
-  object-fit: cover;
-  object-position: center 62%;
-  border-radius: 24px;
-  border: 1px solid rgba(20,30,60,0.10);
-  box-shadow: var(--shadowSoft), 0 0 28px var(--glow);
-}
-
-.tb-mission-card{
-  margin-top: 22px;
-  padding: 26px 28px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(20,30,60,0.10);
-  box-shadow: var(--shadowSoft), 0 0 28px var(--glow);
-}
-.tb-mission-card blockquote{
-  margin: 0;
-  padding: 0;
-  font-size: 1.08rem;
-  line-height: 1.8;
-  font-style: italic;
-  color: rgba(11,18,32,0.84);
-}
-.tb-mission-under{
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(20,30,60,0.10);
-}
-
-.tb-question-panel{
-  margin-top: 16px;
-  padding: 18px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.65);
-  border: 1px solid rgba(20,30,60,0.10);
-}
-.tb-question-panel h3{
-  margin-top: 0;
-  margin-bottom: 12px;
-}
-.tb-question-list{
-  display: grid;
-  gap: 10px;
-  margin-top: 8px;
-}
-.tb-question-list p{
-  margin: 0;
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(20,30,60,0.10);
-  font-weight: 700;
-}
-.tb-question-list--blue p{
-  background: rgba(67,167,227,0.10);
-  border-color: rgba(67,167,227,0.24);
-}
-
-.tb-accordion{
-  margin-top: 24px;
-  display: grid;
-  gap: 14px;
-}
-.tb-accordion-item{
-  border-radius: 22px;
-  border: 1px solid rgba(20,30,60,0.10);
-  background: rgba(255,255,255,0.90);
-  box-shadow: var(--shadowSoft), 0 0 20px var(--glow);
-  overflow: hidden;
-}
-.tb-accordion-trigger{
-  width: 100%;
-  border: 0;
-  padding: 18px 22px;
-  text-align: left;
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 950;
-  cursor: pointer;
-  position: relative;
-}
-.tb-accordion-trigger-gradient{
-  background: linear-gradient(90deg, rgba(107,32,210,0.96), rgba(67,167,227,0.92));
-  color: #ffffff;
-}
-.tb-accordion-trigger-gradient:hover{
-  filter: brightness(1.03);
-}
-.tb-accordion-trigger::after{
-  content: "+";
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  font-weight: 900;
-  color:#ffffff;
-}
-.tb-accordion-item.is-open .tb-accordion-trigger::after{
-  content: "–";
-}
-.tb-accordion-panel{
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 320ms ease;
-}
-.tb-accordion-inner{
-  padding: 14px 22px 22px;
-}
-.tb-emphasis-line{
-  margin: 14px 0;
-  padding: 12px 14px;
-  border-left: 5px solid var(--tidy-orange-strong);
-  background: rgba(240,136,56,0.10);
-  border-radius: 10px;
-  font-weight: 950;
-  color: #0b1220;
-}
-
-.reveal-stagger > *{
-  opacity: 1;
-  transform: none;
-  animation: none;
-}
-.reveal-stagger.is-revealing > *{
-  opacity: 0;
-  transform: translateY(12px);
-  animation: revealUp 500ms ease forwards;
-}
-.reveal-stagger.is-revealing > *:nth-child(1){ animation-delay: 40ms; }
-.reveal-stagger.is-revealing > *:nth-child(2){ animation-delay: 90ms; }
-.reveal-stagger.is-revealing > *:nth-child(3){ animation-delay: 140ms; }
-.reveal-stagger.is-revealing > *:nth-child(4){ animation-delay: 190ms; }
-.reveal-stagger.is-revealing > *:nth-child(5){ animation-delay: 240ms; }
-.reveal-stagger.is-revealing > *:nth-child(6){ animation-delay: 290ms; }
-.reveal-stagger.is-revealing > *:nth-child(7){ animation-delay: 340ms; }
-.reveal-stagger.is-revealing > *:nth-child(8){ animation-delay: 390ms; }
-.reveal-stagger.is-revealing > *:nth-child(9){ animation-delay: 440ms; }
-.reveal-stagger.is-revealing > *:nth-child(10){ animation-delay: 490ms; }
-
-@keyframes revealUp{
-  to{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.roles-carousel-wrap{
-  overflow: hidden;
-  margin-top: 12px;
-}
-.roles-carousel-wrap--inside{
-  margin-top: 18px;
-}
-.roles-carousel-heading{
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-.roles-carousel-controls{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.roles-carousel-controls button{
-  appearance: none;
-  border: 1px solid rgba(0,0,0,0.10);
-  background: var(--tidy-orange);
-  color: #1b1205;
-  border-radius: 999px;
-  padding: 11px 16px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: var(--shadowSoft);
-  transition: transform 120ms ease, filter 120ms ease;
-}
-.roles-carousel-controls button:hover{
-  transform: translateY(-1px);
-  filter: brightness(0.98);
-}
-
-.role-carousel{
-  position: relative;
-  margin-top: 18px;
-  min-height: 390px;
-}
-.role-card{
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: min(760px, 94%);
-  min-height: 330px;
-  transform: translateX(-50%) scale(0.92);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 280ms ease, opacity 280ms ease;
-  background: rgba(255,255,255,0.96);
-  border: 1px solid rgba(20,30,60,0.14);
-  border-radius: 22px;
-  padding: 28px;
-  box-shadow: var(--shadowHard), 0 0 34px var(--glow);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.role-card-title-wrap{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-.role-card h3{
-  text-align: center;
-  width: fit-content;
-  margin: 0 auto 8px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: rgba(107,32,210,0.08);
-}
-.role-card.is-active{
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%) scale(1);
-  z-index: 3;
-}
-.role-card.is-left{
-  opacity: 0.36;
-  transform: translateX(calc(-50% - 250px)) scale(0.90);
-  z-index: 2;
-  cursor:pointer;
-}
-.role-card.is-right{
-  opacity: 0.36;
-  transform: translateX(calc(-50% + 250px)) scale(0.90);
-  z-index: 2;
-  cursor:pointer;
-}
-.role-card.is-hidden{
-  opacity: 0;
-  z-index: 1;
-}
-
-.tb-chip-cloud{
-  position: relative;
-  min-height: 220px;
-  padding: 18px 6px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 14px 18px;
-}
-.tb-chip{
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(107,32,210,0.12), rgba(67,167,227,0.12));
-  border: 1px solid rgba(20,30,60,0.10);
-  box-shadow: var(--shadowSoft), 0 0 18px var(--glow);
-  font-weight: 800;
-  font-style: italic;
-  animation: floatWord 5.5s ease-in-out infinite;
-}
-.tb-chip-cloud.is-revealing .tb-chip{
-  opacity: 0;
-  animation: cloudFloatIn 620ms ease forwards, floatWord 5.5s ease-in-out infinite;
-}
-.tb-chip:nth-child(1){ transform: translate(-20px, 6px) rotate(-3deg); animation-delay: 0s; }
-.tb-chip:nth-child(2){ transform: translate(18px, -10px) rotate(2deg); animation-delay: 0.6s; }
-.tb-chip:nth-child(3){ transform: translate(-8px, 12px) rotate(-2deg); animation-delay: 1.1s; }
-.tb-chip:nth-child(4){ transform: translate(22px, 4px) rotate(3deg); animation-delay: 1.7s; }
-.tb-chip:nth-child(5){ transform: translate(-24px, -8px) rotate(-1deg); animation-delay: 2.1s; }
-.tb-chip:nth-child(6){ transform: translate(8px, 14px) rotate(2deg); animation-delay: 2.8s; }
-.tb-chip:nth-child(7){ transform: translate(-14px, -12px) rotate(-2deg); animation-delay: 3.2s; }
-.tb-chip:nth-child(8){ transform: translate(16px, 10px) rotate(1deg); animation-delay: 3.9s; }
-
-@keyframes cloudFloatIn{
-  from{
-    opacity: 0;
-    transform: translateY(14px) scale(0.96);
-  }
-  to{
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-@keyframes floatWord{
-  0%, 100%{
-    translate: 0 0;
-  }
-  50%{
-    translate: 0 -6px;
-  }
-}
-
-.tb-download-subtle{
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(20,30,60,0.08);
-  text-align: center;
-}
-.tb-download-subtle .small{
-  max-width: 78ch;
-  margin: 0 auto;
-  color: rgba(11,18,32,0.62);
-}
-.tb-download-subtle a{
-  font-weight: 700;
-}
-
-@media (max-width: 980px){
-  .pagelayout.has-sidebar{grid-template-columns: 1fr}
-  .coursehub{position:relative; top:auto}
-  .tilegrid{grid-template-columns: 1fr}
-  .sessionlinks{grid-template-columns: 1fr}
-  .footergrid{grid-template-columns: 1fr}
-  .siteheader-inner{flex-direction:column; align-items:flex-start}
-  .topnav{align-self:stretch; justify-content:flex-start}
-
-  .topstrip-inner,
-  .siteheader-inner,
-  .pagelayout,
-  .sitefooter-inner{
-    padding-left:16px;
-    padding-right:16px;
-  }
-
-  .hero-ambient{
-    min-height: 300px;
-  }
-
-  .ambassador-cta-block--autosize{
-    width: 100%;
-  }
-
-  .overview-hero-image--wide img{
-    aspect-ratio: 16 / 8;
-  }
-
-  .role-carousel{
-    min-height: 0;
-    height: auto;
-  }
-
-  .role-card{
-    position: relative;
-    left: auto;
-    width: 100%;
-    min-height: 0;
-    transform: none !important;
-    opacity: 1 !important;
-    pointer-events: auto;
-    margin: 0 0 12px 0;
-  }
-
-  .role-card.is-left,
-  .role-card.is-right,
-  .role-card.is-hidden{
-    display: none !important;
-  }
-
-  .express-interest-float{
-    right: 16px;
-    left: 16px;
-    bottom: 16px;
-  }
-
-  .express-interest-float a{
-    width: 100%;
-  }
-
-  .cta-row{
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .pagepanel-inner a.cta{
-    width: 100%;
-    justify-content: center;
-  }
-}
+  <script src="/tidybutt_ambassadors_hub/assets/js/layout.js"></script>
+  <script src="/tidybutt_ambassadors_hub/assets/js/main.js"></script>
+</body>
+</html>
