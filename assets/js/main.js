@@ -75,7 +75,6 @@
           line: 1.0 + Math.random() * 0.4
         });
       }
-
       function drawRain() {
         drops.forEach((drop) => {
           ctx.beginPath();
@@ -88,39 +87,51 @@
           drop.x += drop.drift;
           drop.y += drop.speed;
 
-          const splashLine = height * 0.78 + Math.sin((drop.x + frame) * 0.01) * 8;
-          if (drop.y > splashLine) {
-            addRipple(drop.x, splashLine);
+          const waterTop = height * 0.60;
+          const waterDepth = height * 0.30;
+          const surfaceY =
+            waterTop +
+            Math.sin((drop.x + frame) * 0.01) * 6 +
+            Math.sin((drop.x * 0.025) + frame * 0.012) * 4;
+
+          const rippleY = Math.min(
+            height - 24,
+            Math.max(waterTop, surfaceY + Math.random() * waterDepth * 0.35)
+          );
+
+          if (drop.y > rippleY) {
+            addRipple(drop.x, rippleY);
             Object.assign(drop, makeDrop());
           }
         });
       }
-
       function drawRipples() {
         ripples.forEach((ripple) => {
-          for (let i = 0; i < 3; i += 1) {
+          for (let i = 0; i < 4; i += 1) {
+            const radius = ripple.r + i * 8;
+
             ctx.beginPath();
             ctx.ellipse(
               ripple.x,
               ripple.y,
-              ripple.r + i * 7,
-              (ripple.r + i * 7) * 0.35,
+              radius,
+              radius * 0.32,
               0,
               0,
               Math.PI * 2
             );
-            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.06, 0)})`;
+            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.05, 0)})`;
             ctx.lineWidth = ripple.line;
             ctx.stroke();
           }
 
-          ripple.r += 0.95;
-          ripple.alpha *= 0.972;
+          ripple.r += 0.72;
+          ripple.alpha *= 0.978;
         });
 
-        ripples = ripples.filter((r) => r.alpha > 0.025 && r.r < 44);
+        ripples = ripples.filter((r) => r.alpha > 0.02 && r.r < 58);
       }
-
+      
       function drawLeaf(leaf) {
         const swayX = Math.sin(frame * 0.018 + leaf.sway) * 6;
         const swayY = Math.cos(frame * 0.015 + leaf.sway) * 2;
@@ -264,12 +275,29 @@
       link.addEventListener("click", (event) => {
         const raw = link.getAttribute("href");
         if (!raw || raw === "#") return;
+
         const id = raw.slice(1);
         const target = document.getElementById(id);
         if (!target) return;
 
         if (target.classList.contains("tb-accordion-item") || target.closest(".tb-accordion-item")) {
           event.preventDefault();
+
+          if (link.hasAttribute("data-open-first-accordion")) {
+            const accordion = target.closest(".tb-accordion");
+            if (accordion) {
+              accordion.querySelectorAll(".tb-accordion-item").forEach((item) => {
+                item.classList.remove("is-open");
+
+                const btn = item.querySelector(".tb-accordion-trigger");
+                const panel = item.querySelector(".tb-accordion-panel");
+
+                if (btn) btn.setAttribute("aria-expanded", "false");
+                if (panel) prepAccordionPanel(panel, false);
+              });
+            }
+          }
+
           openAccordionById(id);
         }
       });
