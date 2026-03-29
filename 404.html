@@ -3,52 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Page not found | Y Cam Cyntaf</title>
+  <title>Page not found | Tidy Butt Ambassadors Hub</title>
 
-  <link rel="stylesheet" href="/y-cam-cyntaf/assets/css/styles.css" />
+  <link rel="stylesheet" href="/tidybutt_ambassadors_hub/assets/css/styles.css" />
 
   <!-- Auto redirect after 6 seconds -->
-  <meta http-equiv="refresh" content="6; url=/y-cam-cyntaf/" />
+  <meta http-equiv="refresh" content="6; url=/tidybutt_ambassadors_hub/" />
 </head>
 
 <body>
-  <div id="site-shell" class="pageshell">
-    <div data-page-content data-sidebar="false">
+  <div data-page-content data-sidebar="false" data-active="home">
+    <div class="hero hero-ambient">
+      <canvas class="hero-ripple-canvas" aria-hidden="true"></canvas>
 
-      <div class="pagepanel">
-        <div class="pagepanel-inner" style="text-align:center;">
+      <h1>We could not find that page</h1>
 
-          <h1>We could not find that page</h1>
+      <p class="tagline">No stress. You can head back to the Ambassadors Hub from here.</p>
 
-          <p class="lead" style="max-width:70ch; margin:0 auto 12px;">
-            It looks like the link has been typed slightly differently, or the page has moved.
-            No stress. You can return to the course hub and continue from there.
-          </p>
+      <p class="intro" style="max-width:70ch; margin-left:auto; margin-right:auto;">
+        It looks like the link has been typed slightly differently, or the page has moved.
+        You will be redirected automatically in a few seconds.
+      </p>
 
-          <p class="small" style="max-width:70ch; margin:0 auto 18px;">
-            You will be redirected automatically in a few seconds.
-            If not, use the button below.
-          </p>
+      <p class="small" id="bad-url" style="margin:10px auto 18px; opacity:0.7;"></p>
 
-          <!-- Show mistyped URL -->
-          <p class="small" id="bad-url" style="margin-bottom:18px; opacity:0.7;"></p>
-
-          <div class="cta-row" style="justify-content:center;">
-            <a class="cta" href="/y-cam-cyntaf/">Back to the course hub</a>
-            <a class="cta" href="/y-cam-cyntaf/support/">Support and contact</a>
-          </div>
-
-          <p class="small" style="margin-top:22px;">
-            If you were trying to reach a session, please start from the hub and choose Session 1–6.
-          </p>
-
-        </div>
+      <div class="cta-row cta-row-centre">
+        <a class="cta" href="/tidybutt_ambassadors_hub/">Back to the Ambassadors Hub</a>
+        <a class="cta" href="/tidybutt_ambassadors_hub/support/">Support and contact</a>
       </div>
 
+      <p class="small" style="margin-top:22px;">
+        If you were trying to reach the ambassador overview, start from the hub and select <strong>Overview</strong>.
+      </p>
     </div>
   </div>
 
-  <!-- Show the incorrect URL -->
   <script>
     const badUrl = document.getElementById("bad-url");
     if (badUrl) {
@@ -56,7 +45,7 @@
     }
   </script>
 
-  <script src="/y-cam-cyntaf/assets/js/layout.js"></script>
-  <script src="/y-cam-cyntaf/assets/js/main.js"></script>
+  <script src="/tidybutt_ambassadors_hub/assets/js/layout.js"></script>
+  <script src="/tidybutt_ambassadors_hub/assets/js/main.js"></script>
 </body>
 </html>
