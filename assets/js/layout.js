@@ -10,18 +10,14 @@
   const path = normalisePath(window.location.pathname);
 
   const navItems = [
-    { href: SITE_ROOT, label: "Home", key: "home" },
-    { href: SITE_ROOT + "orientation/", label: "Orientation", key: "orientation" },
-    { href: SITE_ROOT + "sessions/session-1/", label: "Session 1", key: "s1" },
-    { href: SITE_ROOT + "sessions/session-2/", label: "Session 2", key: "s2" },
-    { href: SITE_ROOT + "sessions/session-3/", label: "Session 3", key: "s3" },
-    { href: SITE_ROOT + "sessions/session-4/", label: "Session 4", key: "s4" },
-    { href: SITE_ROOT + "sessions/session-5/", label: "Session 5", key: "s5" },
-    { href: SITE_ROOT + "sessions/session-6/", label: "Session 6", key: "s6" },
-    { href: SITE_ROOT + "benchmark/", label: "Distance travelled", key: "benchmark" },
-    { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" },
-    { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" },
-  ];
+  { href: SITE_ROOT, label: "Home", key: "home" },
+  { href: SITE_ROOT + "about/", label: "About the role", key: "about" },
+  { href: SITE_ROOT + "roles/", label: "Roles", key: "roles" },
+  { href: SITE_ROOT + "getting-started/", label: "Getting started", key: "start" },
+  { href: SITE_ROOT + "support/", label: "Support", key: "support" },
+  { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" },
+  { href: SITE_ROOT + "faqs/", label: "FAQs", key: "faqs" }
+];
 
   function getActiveKeyByPath() {
     if (path === SITE_ROOT) return "home";
