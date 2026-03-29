@@ -244,9 +244,9 @@ li{margin:0 0 6px 0}
   border-radius: 24px;
   min-height: 360px;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.84), rgba(255,255,255,0.68)),
-    radial-gradient(circle at top left, rgba(107,32,210,0.12), transparent 42%),
-    radial-gradient(circle at top right, rgba(67,167,227,0.12), transparent 42%);
+    linear-gradient(135deg, rgba(255,255,255,0.74), rgba(255,255,255,0.56)),
+    radial-gradient(circle at top left, rgba(107,32,210,0.16), transparent 42%),
+    radial-gradient(circle at top right, rgba(67,167,227,0.16), transparent 42%);
   border: 1px solid rgba(20,30,60,0.10);
   box-shadow: var(--shadowHard), 0 0 34px var(--glow);
   padding: 28px 24px 28px;
