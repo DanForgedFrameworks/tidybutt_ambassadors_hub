@@ -1,201 +1,203 @@
 (function () {
-  const SITE_ROOT = "/tidybutt_ambassadors_hub/";
-  const EXPRESS_INTEREST_LINK = "mailto:hello@tidybutt.co.uk?subject=Expression%20of%20interest%20%E2%80%93%20Tidy%20Butt%20Ambassador&body=Introduce%20yourself%3A%0A%0AWhy%20would%20you%20like%20to%20get%20involved%3F%0A%0ATell%20us%20a%20bit%20about%20your%20interests%2C%20skills%2C%20or%20any%20ideas%20you%20have%3A%0A%0A";
+  function initAmbientCanvas() {
+    const canvases = document.querySelectorAll(".hero-ripple-canvas");
+    canvases.forEach((canvas) => {
+      const parent = canvas.parentElement;
+      if (!parent) return;
 
-  function normalisePath(p) {
-    return (p || "/")
-      .replace(/\/index\.html$/i, "/")
-      .replace(/\/+$/, "/");
-  }
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
 
-  const path = normalisePath(window.location.pathname);
+      let width = 0;
+      let height = 0;
+      let drops = [];
+      let leaves = [];
+      let frame = 0;
+      let animationId = null;
 
-  const navItems = [
-    { href: SITE_ROOT, label: "Home", key: "home" },
-    { href: SITE_ROOT + "overview/", label: "Overview", key: "overview" },
-    { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" },
-    { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" }
-  ];
+      function resize() {
+        const rect = parent.getBoundingClientRect();
+        width = Math.max(10, Math.floor(rect.width));
+        height = Math.max(260, Math.floor(rect.height));
+        canvas.width = width;
+        canvas.height = height;
+      }
 
-  function getActiveKeyByPath() {
-    if (path === SITE_ROOT) return "home";
-    if (path.includes("/overview/")) return "overview";
-    if (path.includes("/downloads/")) return "downloads";
-    if (path.includes("/support/")) return "support";
-    if (path.includes("/about/")) return "overview";
-    if (path.includes("/getting-started/")) return "overview";
-    return "home";
-  }
+      function makeDrop() {
+        return {
+          x: Math.random() * width,
+          y: -20 - Math.random() * height * 0.3,
+          speed: 1.1 + Math.random() * 1.3,
+          radius: 1.5 + Math.random() * 1.8,
+          ripple: false,
+          rippleR: 0,
+          rippleA: 0.20 + Math.random() * 0.1,
+          tint: Math.random() > 0.5 ? "rgba(107,32,210,0.18)" : "rgba(67,167,227,0.18)"
+        };
+      }
 
-  const pageContentEl = document.querySelector("[data-page-content]");
-  if (!pageContentEl) return;
+      function makeLeaf() {
+        return {
+          x: width + 20 + Math.random() * 120,
+          y: Math.random() * height,
+          size: 6 + Math.random() * 8,
+          dx: -(0.25 + Math.random() * 0.35),
+          dy: -0.04 + Math.random() * 0.08,
+          sway: Math.random() * Math.PI * 2,
+          rot: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.5 ? "rgba(240,136,56,0.10)" : "rgba(107,32,210,0.08)"
+        };
+      }
 
-  const explicitActive = (pageContentEl.getAttribute("data-active") || "").trim();
-  const activeKey = explicitActive ? explicitActive : getActiveKeyByPath();
-  const wantsSidebar = pageContentEl.getAttribute("data-sidebar") === "true";
+      function seed() {
+        drops = [];
+        leaves = [];
+        for (let i = 0; i < 16; i += 1) drops.push(makeDrop());
+        for (let i = 0; i < 6; i += 1) leaves.push(makeLeaf());
+      }
 
-  const isHome =
-    path === SITE_ROOT ||
-    path === "/tidybutt_ambassadors_hub/" ||
-    path === "/tidybutt_ambassadors_hub/index.html";
+      function drawDrop(drop) {
+        if (!drop.ripple) {
+          ctx.beginPath();
+          ctx.arc(drop.x, drop.y, drop.radius, 0, Math.PI * 2);
+          ctx.fillStyle = drop.tint;
+          ctx.fill();
 
-  const sidebarHtml = wantsSidebar
-    ? `
-      <aside class="coursehub" aria-label="Ambassador hub navigation">
-        <div class="coursehub-inner">
-          <p class="coursehub-title">Ambassador hub</p>
-          <nav aria-label="Primary">
-            <ul class="coursehub-list">
-              ${navItems
-                .filter((n) => n.key !== "home")
-                .map((n) => {
-                  const isActive = n.key === activeKey;
-                  return `<li>
-                    <a class="coursehub-link ${isActive ? "is-active" : ""}"
-                       href="${n.href}"
-                       ${isActive ? 'aria-current="page"' : ""}>
-                      ${n.label}
-                    </a>
-                  </li>`;
-                })
-                .join("")}
-            </ul>
-          </nav>
-        </div>
-      </aside>
-    `
-    : "";
+          drop.y += drop.speed;
+          if (drop.y > height * 0.72 + Math.random() * height * 0.18) {
+            drop.ripple = true;
+            drop.rippleR = 1;
+          }
+        } else {
+          ctx.beginPath();
+          ctx.arc(drop.x, drop.y, drop.rippleR, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(255,255,255,${drop.rippleA})`;
+          ctx.lineWidth = 1.1;
+          ctx.stroke();
 
-  const headerHtml = `
-    <a class="skip-link" href="#main">Skip to main content</a>
+          drop.rippleR += 0.8;
+          drop.rippleA *= 0.97;
 
-    <div class="topstrip" role="region" aria-label="Ambassador support strip">
-      <div class="topstrip-inner">
-        <span>Ambassador support</span>
-        <span aria-hidden="true">•</span>
-        <a href="${SITE_ROOT}support/">Support and contact</a>
-      </div>
-    </div>
-
-    <header class="siteheader" aria-label="Site header">
-      <div class="siteheader-inner">
-        <a class="brand" href="${SITE_ROOT}">
-          <img class="brand-logo" src="${SITE_ROOT}assets/img/tidybutt-logo.png" alt="Tidy Butt logo" />
-          <div class="brand-text">
-            <div class="brand-title">Tidy Butt Ambassadors Hub</div>
-            <div class="brand-subtitle">Y cam cyntaf i lysgenhadon</div>
-          </div>
-        </a>
-
-        ${
-          isHome
-            ? ""
-            : `
-          <nav class="topnav" aria-label="Top navigation">
-            <a class="topnav-pill ${activeKey === "home" ? "is-active" : ""}" href="${SITE_ROOT}">Home</a>
-            <a class="topnav-pill ${activeKey === "overview" ? "is-active" : ""}" href="${SITE_ROOT}overview/">Overview</a>
-            <a class="topnav-pill ${activeKey === "downloads" ? "is-active" : ""}" href="${SITE_ROOT}downloads/">Downloads</a>
-            <a class="topnav-pill ${activeKey === "support" ? "is-active" : ""}" href="${SITE_ROOT}support/">Support and contact</a>
-          </nav>
-        `
+          if (drop.rippleR > 24 || drop.rippleA < 0.03) {
+            Object.assign(drop, makeDrop());
+          }
         }
-      </div>
-    </header>
-  `;
+      }
 
-  const footerHtml = `
-    <footer class="sitefooter" aria-label="Site footer">
-      <div class="sitefooter-inner">
-        <div class="footergrid">
-          <div class="footercol">
-            <img class="footerlogo" src="${SITE_ROOT}assets/img/tidybutt-logo.png" alt="Tidy Butt logo" />
-            <p class="small">Registered Charity 1195392</p>
-          </div>
+      function drawLeaf(leaf) {
+        const swayX = Math.sin(frame * 0.02 + leaf.sway) * 8;
+        const swayR = Math.sin(frame * 0.015 + leaf.sway) * 0.35;
 
-          <div class="footercol">
-            <p><strong>Navigation</strong></p>
-            <ul class="footerlinks">
-              <li><a href="${SITE_ROOT}overview/">Overview</a></li>
-              <li><a href="${SITE_ROOT}downloads/">Downloads</a></li>
-              <li><a href="${SITE_ROOT}support/">Support and contact</a></li>
-            </ul>
-          </div>
+        ctx.save();
+        ctx.translate(leaf.x + swayX, leaf.y);
+        ctx.rotate(leaf.rot + swayR);
+        ctx.fillStyle = leaf.color;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, leaf.size * 1.4, leaf.size * 0.55, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
 
-          <div class="footercol">
-            <p><strong>Socials</strong></p>
-            <ul class="footerlinks">
-              <li><a href="https://www.facebook.com/tidybuttmat">Facebook</a></li>
-              <li><a href="https://www.instagram.com/tidy_butt">Instagram</a></li>
-            </ul>
-          </div>
-        </div>
+        leaf.x += leaf.dx;
+        leaf.y += leaf.dy;
 
-        <div class="footerfineprint">
-          <p class="small">© Tidy Butt. If you notice anything incorrect, please contact Tidy Butt.</p>
-        </div>
-      </div>
-    </footer>
-  `;
+        if (leaf.x < -80 || leaf.y < -40 || leaf.y > height + 40) {
+          Object.assign(leaf, makeLeaf());
+        }
+      }
 
-  const shell = document.createElement("div");
-  shell.className = "pageshell";
-  shell.setAttribute("data-page-key", activeKey);
+      function render() {
+        frame += 1;
+        ctx.clearRect(0, 0, width, height);
 
-  shell.innerHTML = `
-    ${headerHtml}
-    <main id="main" class="pagemain">
-      <div class="pagelayout ${wantsSidebar ? "has-sidebar" : "no-sidebar"}">
-        ${sidebarHtml}
-        <section class="pagepanel" aria-label="Page content">
-          <div class="pagepanel-inner" id="pagepanel-inner"></div>
-        </section>
-      </div>
-    </main>
-    ${footerHtml}
-    <div class="express-interest-float">
-      <a href="${EXPRESS_INTEREST_LINK}">Express interest</a>
-    </div>
-  `;
+        const grad = ctx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, "rgba(8,18,40,0.00)");
+        grad.addColorStop(0.5, "rgba(67,167,227,0.04)");
+        grad.addColorStop(1, "rgba(107,32,210,0.03)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
 
-  const target = shell.querySelector("#pagepanel-inner");
-  target.appendChild(pageContentEl);
+        drops.forEach(drawDrop);
+        leaves.forEach(drawLeaf);
 
-  document.body.innerHTML = "";
-  document.body.appendChild(shell);
+        animationId = requestAnimationFrame(render);
+      }
 
-  window.dispatchEvent(new Event("layout:ready"));
-})();
+      resize();
+      seed();
+      render();
+      window.addEventListener("resize", resize);
 
-(function addFavicons() {
-  const base = "/tidybutt_ambassadors_hub";
+      parent.addEventListener("remove", () => {
+        if (animationId) cancelAnimationFrame(animationId);
+      });
+    });
+  }
 
-  const already =
-    document.querySelector('link[rel="icon"]') ||
-    document.querySelector('link[rel="shortcut icon"]') ||
-    document.querySelector('link[rel="apple-touch-icon"]') ||
-    document.querySelector('link[rel="manifest"]');
+  function initAccordions() {
+    const accordions = document.querySelectorAll(".tb-accordion");
+    accordions.forEach((acc) => {
+      const buttons = acc.querySelectorAll(".tb-accordion-trigger");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".tb-accordion-item");
+          if (!item) return;
+          item.classList.toggle("is-open");
+          const expanded = item.classList.contains("is-open");
+          btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+        });
+      });
+    });
+  }
 
-  if (already) return;
+  function initRolesCarousel() {
+    const carousels = document.querySelectorAll("[data-role-carousel]");
+    carousels.forEach((carousel) => {
+      const cards = Array.from(carousel.querySelectorAll(".role-card"));
+      const prev = carousel.parentElement.querySelector("[data-carousel-prev]");
+      const next = carousel.parentElement.querySelector("[data-carousel-next]");
+      if (!cards.length || !prev || !next) return;
 
-  const head = document.head;
-  if (!head) return;
+      let index = 0;
 
-  const links = [
-    { rel: "icon", type: "image/png", sizes: "96x96", href: `${base}/favicon-96x96.png` },
-    { rel: "icon", type: "image/svg+xml", href: `${base}/favicon.svg` },
-    { rel: "shortcut icon", href: `${base}/favicon.ico` },
-    { rel: "apple-touch-icon", sizes: "180x180", href: `${base}/apple-touch-icon.png` },
-    { rel: "manifest", href: `${base}/site.webmanifest` }
-  ];
+      function render() {
+        cards.forEach((card, i) => {
+          card.classList.remove("is-active", "is-left", "is-right", "is-hidden");
+          if (i === index) card.classList.add("is-active");
+          else if (i === (index - 1 + cards.length) % cards.length) card.classList.add("is-left");
+          else if (i === (index + 1) % cards.length) card.classList.add("is-right");
+          else card.classList.add("is-hidden");
+        });
+      }
 
-  links.forEach(attrs => {
-    const link = document.createElement("link");
-    Object.entries(attrs).forEach(([k, v]) => link.setAttribute(k, v));
-    head.appendChild(link);
+      prev.addEventListener("click", () => {
+        index = (index - 1 + cards.length) % cards.length;
+        render();
+      });
+
+      next.addEventListener("click", () => {
+        index = (index + 1) % cards.length;
+        render();
+      });
+
+      render();
+    });
+  }
+
+  window.addEventListener("layout:ready", () => {
+    initAmbientCanvas();
+    initAccordions();
+    initRolesCarousel();
   });
 
-  const meta = document.createElement("meta");
-  meta.setAttribute("name", "apple-mobile-web-app-title");
-  meta.setAttribute("content", "Tidy Butt Ambassadors Hub");
-  head.appendChild(meta);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      initAmbientCanvas();
+      initAccordions();
+      initRolesCarousel();
+    });
+  } else {
+    initAmbientCanvas();
+    initAccordions();
+    initRolesCarousel();
+  }
 })();
