@@ -1,5 +1,5 @@
 /* =========================================================
-   Y Cam Cyntaf (GitHub Pages) styles.css
+   Tidy Butt Ambassador (GitHub Pages) styles.css
    Theme aligned to tidybutt.co.uk aesthetic
    - Orange: content CTAs + carousel buttons + benchmark action buttons
    - Purple: nav (top + sidebar) highlights
@@ -1243,5 +1243,225 @@ li{margin:0 0 6px 0}
 
   .express-interest-float a{
     width: 100%;
+  }
+}
+
+.tb-contained-block{
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tb-soft-intro-card{
+  max-width: 900px;
+  margin: 22px auto 0;
+  padding: 20px 22px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(20,30,60,0.10);
+  box-shadow: var(--shadowSoft), 0 0 28px var(--glow);
+}
+
+.overview-hero-image--contained{
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.overview-hero-image--contained img{
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.tb-callout-warm{
+  background: linear-gradient(180deg, rgba(240,136,56,0.12), rgba(255,255,255,0.94));
+}
+
+.tb-question-panel{
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(20,30,60,0.10);
+}
+
+.tb-question-panel h3{
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.tb-accordion-inner{
+  padding-top: 6px;
+}
+
+.tb-accordion-trigger-gradient{
+  background: linear-gradient(90deg, rgba(107,32,210,0.96), rgba(67,167,227,0.92));
+  color: #ffffff;
+}
+
+.tb-accordion-trigger-gradient:hover{
+  filter: brightness(1.03);
+}
+
+.tb-accordion-trigger-gradient::after{
+  color: #ffffff;
+}
+
+.tb-emphasis-line{
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 5px solid var(--tidy-orange-strong);
+  background: rgba(240,136,56,0.10);
+  border-radius: 10px;
+  font-weight: 950;
+  color: #0b1220;
+}
+
+.tb-chip-cloud-wrap{
+  overflow: hidden;
+}
+
+.tb-chip-cloud{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tb-chip{
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(107,32,210,0.12), rgba(67,167,227,0.12));
+  border: 1px solid rgba(20,30,60,0.10);
+  box-shadow: var(--shadowSoft), 0 0 18px var(--glow);
+  font-weight: 800;
+  animation: chipFloatIn 650ms ease both;
+}
+
+.tb-chip:nth-child(2){ animation-delay: 60ms; }
+.tb-chip:nth-child(3){ animation-delay: 120ms; }
+.tb-chip:nth-child(4){ animation-delay: 180ms; }
+.tb-chip:nth-child(5){ animation-delay: 240ms; }
+.tb-chip:nth-child(6){ animation-delay: 300ms; }
+.tb-chip:nth-child(7){ animation-delay: 360ms; }
+.tb-chip:nth-child(8){ animation-delay: 420ms; }
+
+@keyframes chipFloatIn{
+  from{
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.reveal-stagger > *{
+  opacity: 0;
+  transform: translateY(12px);
+  animation: revealUp 500ms ease forwards;
+}
+
+.reveal-stagger > *:nth-child(1){ animation-delay: 40ms; }
+.reveal-stagger > *:nth-child(2){ animation-delay: 90ms; }
+.reveal-stagger > *:nth-child(3){ animation-delay: 140ms; }
+.reveal-stagger > *:nth-child(4){ animation-delay: 190ms; }
+.reveal-stagger > *:nth-child(5){ animation-delay: 240ms; }
+.reveal-stagger > *:nth-child(6){ animation-delay: 290ms; }
+.reveal-stagger > *:nth-child(7){ animation-delay: 340ms; }
+.reveal-stagger > *:nth-child(8){ animation-delay: 390ms; }
+
+@keyframes revealUp{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.roles-carousel-wrap{
+  overflow: hidden;
+}
+
+.role-carousel{
+  position: relative;
+  margin-top: 18px;
+  min-height: 390px;
+}
+
+.role-card{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(760px, 94%);
+  min-height: 330px;
+  transform: translateX(-50%) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 280ms ease, opacity 280ms ease;
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(20,30,60,0.14);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: var(--shadowHard), 0 0 34px var(--glow);
+}
+
+.role-card.is-active{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+  z-index: 3;
+}
+
+.role-card.is-left{
+  opacity: 0.36;
+  transform: translateX(calc(-50% - 250px)) scale(0.90);
+  z-index: 2;
+}
+
+.role-card.is-right{
+  opacity: 0.36;
+  transform: translateX(calc(-50% + 250px)) scale(0.90);
+  z-index: 2;
+}
+
+.role-card.is-hidden{
+  opacity: 0;
+  z-index: 1;
+}
+
+@media (max-width: 980px){
+  .tb-soft-intro-card{
+    padding: 18px;
+  }
+
+  .overview-hero-image--contained img{
+    max-height: 260px;
+  }
+
+  .role-carousel{
+    min-height: 0;
+    height: auto;
+  }
+
+  .role-card{
+    position: relative;
+    left: auto;
+    width: 100%;
+    min-height: 0;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto;
+    margin: 0 0 12px 0;
+  }
+
+  .role-card.is-left,
+  .role-card.is-right,
+  .role-card.is-hidden{
+    display: none !important;
   }
 }
