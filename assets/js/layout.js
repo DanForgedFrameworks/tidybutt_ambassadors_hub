@@ -1,5 +1,5 @@
 (function () {
-  const SITE_ROOT = "/y-cam-cyntaf/";
+  const SITE_ROOT = "/tidybutt_ambassadors_hub/";
 
   function normalisePath(p) {
     return (p || "/")
@@ -10,52 +10,39 @@
   const path = normalisePath(window.location.pathname);
 
   const navItems = [
-  { href: SITE_ROOT, label: "Home", key: "home" },
-  { href: SITE_ROOT + "about/", label: "About the role", key: "about" },
-  { href: SITE_ROOT + "roles/", label: "Roles", key: "roles" },
-  { href: SITE_ROOT + "getting-started/", label: "Getting started", key: "start" },
-  { href: SITE_ROOT + "support/", label: "Support", key: "support" },
-  { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" },
-  { href: SITE_ROOT + "faqs/", label: "FAQs", key: "faqs" }
-];
+    { href: SITE_ROOT, label: "Home", key: "home" },
+    { href: SITE_ROOT + "orientation/", label: "Overview", key: "overview" },
+    { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" },
+    { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" }
+  ];
 
   function getActiveKeyByPath() {
     if (path === SITE_ROOT) return "home";
-    if (path.includes("/orientation/")) return "orientation";
+    if (path.includes("/orientation/")) return "overview";
     if (path.includes("/downloads/")) return "downloads";
     if (path.includes("/support/")) return "support";
-    if (path.includes("/benchmark/")) return "benchmark";
-    if (path.includes("/sessions/session-1/")) return "s1";
-    if (path.includes("/sessions/session-2/")) return "s2";
-    if (path.includes("/sessions/session-3/")) return "s3";
-    if (path.includes("/sessions/session-4/")) return "s4";
-    if (path.includes("/sessions/session-5/")) return "s5";
-    if (path.includes("/sessions/session-6/")) return "s6";
+    if (path.includes("/express-interest/")) return "support";
     return "home";
   }
 
-  // Find the page content
   const pageContentEl = document.querySelector("[data-page-content]");
   if (!pageContentEl) return;
 
-  // Allow pages to explicitly set an active key (optional)
   const explicitActive = (pageContentEl.getAttribute("data-active") || "").trim();
   const activeKey = explicitActive ? explicitActive : getActiveKeyByPath();
 
-  // Sidebar toggle
   const wantsSidebar = pageContentEl.getAttribute("data-sidebar") === "true";
 
-  // Home detection
   const isHome =
     path === SITE_ROOT ||
-    path === "/y-cam-cyntaf/" ||
-    path === "/y-cam-cyntaf/index.html";
+    path === "/tidybutt_ambassadors_hub/" ||
+    path === "/tidybutt_ambassadors_hub/index.html";
 
   const sidebarHtml = wantsSidebar
     ? `
-      <aside class="coursehub" aria-label="Course hub navigation">
+      <aside class="coursehub" aria-label="Ambassador hub navigation">
         <div class="coursehub-inner">
-          <p class="coursehub-title">Course hub</p>
+          <p class="coursehub-title">Ambassador hub</p>
           <nav aria-label="Primary">
             <ul class="coursehub-list">
               ${navItems
@@ -81,9 +68,9 @@
   const headerHtml = `
     <a class="skip-link" href="#main">Skip to main content</a>
 
-    <div class="topstrip" role="region" aria-label="Course support strip">
+    <div class="topstrip" role="region" aria-label="Ambassador support strip">
       <div class="topstrip-inner">
-        <span>Course support</span>
+        <span>Ambassador support</span>
         <span aria-hidden="true">•</span>
         <a href="${SITE_ROOT}support/">Support and contact</a>
       </div>
@@ -94,8 +81,8 @@
         <a class="brand" href="${SITE_ROOT}">
           <img class="brand-logo" src="${SITE_ROOT}assets/img/tidybutt-logo.png" alt="Tidy Butt logo" />
           <div class="brand-text">
-            <div class="brand-title">Y Cam Cyntaf</div>
-            <div class="brand-subtitle">First steps in Welsh</div>
+            <div class="brand-title">Tidy Butt Ambassadors Hub</div>
+            <div class="brand-subtitle">Y cam cyntaf i lysgenhadon</div>
           </div>
         </a>
 
@@ -105,8 +92,8 @@
             : `
           <nav class="topnav" aria-label="Top navigation">
             <a class="topnav-pill ${activeKey === "home" ? "is-active" : ""}" href="${SITE_ROOT}">Home</a>
+            <a class="topnav-pill ${activeKey === "overview" ? "is-active" : ""}" href="${SITE_ROOT}orientation/">Overview</a>
             <a class="topnav-pill ${activeKey === "downloads" ? "is-active" : ""}" href="${SITE_ROOT}downloads/">Downloads</a>
-            <a class="topnav-pill ${activeKey === "benchmark" ? "is-active" : ""}" href="${SITE_ROOT}benchmark/">Distance travelled</a>
             <a class="topnav-pill ${activeKey === "support" ? "is-active" : ""}" href="${SITE_ROOT}support/">Support and contact</a>
           </nav>
         `
@@ -127,8 +114,7 @@
           <div class="footercol">
             <p><strong>Navigation</strong></p>
             <ul class="footerlinks">
-              <li><a href="${SITE_ROOT}orientation/">Orientation</a></li>
-              <li><a href="${SITE_ROOT}benchmark/">Distance travelled</a></li>
+              <li><a href="${SITE_ROOT}orientation/">Overview</a></li>
               <li><a href="${SITE_ROOT}downloads/">Downloads</a></li>
               <li><a href="${SITE_ROOT}support/">Support and contact</a></li>
             </ul>
@@ -165,6 +151,9 @@
       </div>
     </main>
     ${footerHtml}
+    <div class="express-interest-float">
+      <a href="${SITE_ROOT}express-interest/">Express interest</a>
+    </div>
   `;
 
   const target = shell.querySelector("#pagepanel-inner");
@@ -175,10 +164,10 @@
 
   window.dispatchEvent(new Event("layout:ready"));
 })();
-(function addFavicons() {
-  const base = "/y-cam-cyntaf";
 
-  // Do not add twice
+(function addFavicons() {
+  const base = "/tidybutt_ambassadors_hub";
+
   const already =
     document.querySelector('link[rel="icon"]') ||
     document.querySelector('link[rel="shortcut icon"]') ||
@@ -206,6 +195,6 @@
 
   const meta = document.createElement("meta");
   meta.setAttribute("name", "apple-mobile-web-app-title");
-  meta.setAttribute("content", "Y Cam Cyntaf");
+  meta.setAttribute("content", "Tidy Butt Ambassadors Hub");
   head.appendChild(meta);
 })();
