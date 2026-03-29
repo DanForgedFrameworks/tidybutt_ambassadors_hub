@@ -20,7 +20,7 @@
       function resize() {
         const rect = parent.getBoundingClientRect();
         width = Math.max(10, Math.floor(rect.width));
-        height = Math.max(340, Math.floor(parent.scrollHeight || rect.height || 340));
+        height = Math.max(320, Math.floor(rect.height));
         canvas.width = width;
         canvas.height = height;
       }
@@ -29,10 +29,10 @@
         return {
           x: Math.random() * width,
           y: seedY ?? (-40 - Math.random() * 120),
-          len: 10 + Math.random() * 16,
-          speed: 4.2 + Math.random() * 3.6,
-          drift: -0.15 + Math.random() * 0.3,
-          alpha: 0.18 + Math.random() * 0.18
+          len: 12 + Math.random() * 18,
+          speed: 4.6 + Math.random() * 3.4,
+          drift: -0.2 + Math.random() * 0.35,
+          alpha: 0.22 + Math.random() * 0.18
         };
       }
 
@@ -40,12 +40,12 @@
         return {
           x: -60 - Math.random() * 160,
           y: Math.random() * height,
-          size: 7 + Math.random() * 10,
-          dx: 0.35 + Math.random() * 0.45,
-          dy: -0.05 + Math.random() * 0.10,
+          size: 7 + Math.random() * 9,
+          dx: 0.35 + Math.random() * 0.50,
+          dy: -0.06 + Math.random() * 0.12,
           sway: Math.random() * Math.PI * 2,
           rot: Math.random() * Math.PI * 2,
-          color: Math.random() > 0.5 ? "rgba(240,136,56,0.10)" : "rgba(107,32,210,0.08)"
+          color: Math.random() > 0.5 ? "rgba(240,136,56,0.12)" : "rgba(107,32,210,0.10)"
         };
       }
 
@@ -53,7 +53,8 @@
         drops = [];
         ripples = [];
         leaves = [];
-        const dropCount = Math.max(18, Math.floor(width / 70));
+
+        const dropCount = Math.max(24, Math.floor(width / 55));
         const leafCount = Math.max(5, Math.floor(width / 260));
 
         for (let i = 0; i < dropCount; i += 1) {
@@ -70,8 +71,8 @@
           x,
           y,
           r: 2,
-          alpha: 0.26 + Math.random() * 0.10,
-          line: 1.1 + Math.random() * 0.5
+          alpha: 0.30 + Math.random() * 0.10,
+          line: 1.0 + Math.random() * 0.4
         });
       }
 
@@ -103,21 +104,21 @@
               ripple.x,
               ripple.y,
               ripple.r + i * 7,
-              (ripple.r + i * 7) * 0.34,
+              (ripple.r + i * 7) * 0.35,
               0,
               0,
               Math.PI * 2
             );
-            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.05, 0)})`;
+            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.06, 0)})`;
             ctx.lineWidth = ripple.line;
             ctx.stroke();
           }
 
-          ripple.r += 0.85;
+          ripple.r += 0.95;
           ripple.alpha *= 0.972;
         });
 
-        ripples = ripples.filter((r) => r.alpha > 0.025 && r.r < 42);
+        ripples = ripples.filter((r) => r.alpha > 0.025 && r.r < 44);
       }
 
       function drawLeaf(leaf) {
@@ -130,9 +131,9 @@
         ctx.rotate(leaf.rot + swayR);
         ctx.fillStyle = leaf.color;
         ctx.beginPath();
-        ctx.moveTo(0, -leaf.size * 0.9);
-        ctx.quadraticCurveTo(leaf.size * 0.9, -leaf.size * 0.1, 0, leaf.size);
-        ctx.quadraticCurveTo(-leaf.size * 0.9, -leaf.size * 0.1, 0, -leaf.size * 0.9);
+        ctx.moveTo(0, -leaf.size * 0.95);
+        ctx.quadraticCurveTo(leaf.size * 0.95, -leaf.size * 0.12, 0, leaf.size);
+        ctx.quadraticCurveTo(-leaf.size * 0.95, -leaf.size * 0.12, 0, -leaf.size * 0.95);
         ctx.fill();
         ctx.restore();
 
@@ -149,9 +150,9 @@
         ctx.clearRect(0, 0, width, height);
 
         const grad = ctx.createLinearGradient(0, 0, width, height);
-        grad.addColorStop(0, "rgba(107,32,210,0.06)");
-        grad.addColorStop(0.5, "rgba(67,167,227,0.05)");
-        grad.addColorStop(1, "rgba(240,136,56,0.04)");
+        grad.addColorStop(0, "rgba(107,32,210,0.08)");
+        grad.addColorStop(0.5, "rgba(67,167,227,0.06)");
+        grad.addColorStop(1, "rgba(240,136,56,0.05)");
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
 
@@ -189,6 +190,31 @@
     container.classList.add("is-revealing");
   }
 
+  function openAccordionById(id) {
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const item = target.classList.contains("tb-accordion-item")
+      ? target
+      : target.closest(".tb-accordion-item");
+
+    if (!item) return;
+
+    const btn = item.querySelector(".tb-accordion-trigger");
+    const panel = item.querySelector(".tb-accordion-panel");
+    const revealTarget = item.querySelector(".tb-chip-cloud") || item.querySelector(".reveal-stagger");
+
+    item.classList.add("is-open");
+    if (btn) btn.setAttribute("aria-expanded", "true");
+    if (panel) prepAccordionPanel(panel, true);
+    if (revealTarget) restartReveal(revealTarget);
+
+    setTimeout(() => {
+      item.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  }
+
   function initAccordions() {
     const accordions = document.querySelectorAll(".tb-accordion");
 
@@ -207,7 +233,7 @@
         btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
         prepAccordionPanel(panel, isOpen);
 
-        if (isOpen) {
+        if (isOpen && revealTarget) {
           restartReveal(revealTarget);
         }
 
@@ -218,7 +244,7 @@
           btn.setAttribute("aria-expanded", nowOpen ? "true" : "false");
           prepAccordionPanel(panel, nowOpen);
 
-          if (nowOpen) {
+          if (nowOpen && revealTarget) {
             restartReveal(revealTarget);
             setTimeout(() => prepAccordionPanel(panel, true), 320);
           }
@@ -231,6 +257,28 @@
         panel.style.maxHeight = `${panel.scrollHeight}px`;
       });
     });
+  }
+
+  function initAccordionAnchorLinks() {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const raw = link.getAttribute("href");
+        if (!raw || raw === "#") return;
+        const id = raw.slice(1);
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        if (target.classList.contains("tb-accordion-item") || target.closest(".tb-accordion-item")) {
+          event.preventDefault();
+          openAccordionById(id);
+        }
+      });
+    });
+
+    if (window.location.hash) {
+      const id = window.location.hash.replace("#", "");
+      setTimeout(() => openAccordionById(id), 250);
+    }
   }
 
   function initRolesCarousel() {
@@ -300,6 +348,7 @@
   function boot() {
     initAmbientCanvas();
     initAccordions();
+    initAccordionAnchorLinks();
     initRolesCarousel();
     initClouds();
   }
