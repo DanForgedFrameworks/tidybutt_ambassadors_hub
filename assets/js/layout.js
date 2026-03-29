@@ -12,7 +12,7 @@
 
   const navItems = [
     { href: SITE_ROOT + "about/", label: "About this hub", key: "about" },
-    { href: SITE_ROOT + "overview/#roles-carousel", label: "Possible roles", key: "roles" },
+    { href: SITE_ROOT + "overview/#possible-roles", label: "Possible roles", key: "roles" },
     { href: SITE_ROOT + "overview/#first-steps", label: "Get started", key: "get-started" },
     { href: EXPRESS_INTEREST_LINK, label: "Express interest", key: "express-interest" },
     { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" },
@@ -42,10 +42,13 @@
           <p class="coursehub-title">Ambassador hub</p>
           <nav aria-label="Section navigation">
             <ul class="coursehub-list">
-              <li><a class="coursehub-link" href="#mission-title">Our mission</a></li>
-              <li><a class="coursehub-link" href="#accordion-start">Overview sections</a></li>
-              <li><a class="coursehub-link" href="#roles-carousel">Possible roles</a></li>
-              <li><a class="coursehub-link" href="#difference-title">How ambassadors make a difference</a></li>
+              <li><a class="coursehub-link" href="#what-is-tidybutt">What is Tidy Butt?</a></li>
+              <li><a class="coursehub-link" href="#what-it-means">What does it mean to be an ambassador?</a></li>
+              <li><a class="coursehub-link" href="#important-considerations">Important considerations</a></li>
+              <li><a class="coursehub-link" href="#boundaries">Boundaries and looking after yourself</a></li>
+              <li><a class="coursehub-link" href="#culture-community">The culture: community, not hierarchy</a></li>
+              <li><a class="coursehub-link" href="#possible-roles">Possible ambassador roles</a></li>
+              <li><a class="coursehub-link" href="#how-they-help">How ambassadors make a difference</a></li>
               <li><a class="coursehub-link" href="#first-steps">First steps</a></li>
             </ul>
           </nav>
