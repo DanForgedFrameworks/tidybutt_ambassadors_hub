@@ -11,54 +11,42 @@
   const path = normalisePath(window.location.pathname);
 
   const navItems = [
-    { href: SITE_ROOT, label: "Home", key: "home" },
-    { href: SITE_ROOT + "overview/", label: "Overview", key: "overview" },
-    { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" },
-    { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" }
+    { href: SITE_ROOT + "about/", label: "About this hub", key: "about" },
+    { href: SITE_ROOT + "overview/#roles-carousel", label: "Possible roles", key: "roles" },
+    { href: SITE_ROOT + "overview/#first-steps", label: "Get started", key: "get-started" },
+    { href: EXPRESS_INTEREST_LINK, label: "Express interest", key: "express-interest" },
+    { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" },
+    { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" }
   ];
 
   function getActiveKeyByPath() {
-    if (path === SITE_ROOT) return "home";
-    if (path.includes("/overview/")) return "overview";
+    if (path === SITE_ROOT) return "about";
+    if (path.includes("/about/")) return "about";
+    if (path.includes("/overview/")) return "roles";
     if (path.includes("/downloads/")) return "downloads";
     if (path.includes("/support/")) return "support";
-    if (path.includes("/about/")) return "overview";
-    if (path.includes("/getting-started/")) return "overview";
-    return "home";
+    return "about";
   }
 
   const pageContentEl = document.querySelector("[data-page-content]");
   if (!pageContentEl) return;
 
   const explicitActive = (pageContentEl.getAttribute("data-active") || "").trim();
-  const activeKey = explicitActive ? explicitActive : getActiveKeyByPath();
+  const activeKey = explicitActive || getActiveKeyByPath();
   const wantsSidebar = pageContentEl.getAttribute("data-sidebar") === "true";
-
-  const isHome =
-    path === SITE_ROOT ||
-    path === "/tidybutt_ambassadors_hub/" ||
-    path === "/tidybutt_ambassadors_hub/index.html";
 
   const sidebarHtml = wantsSidebar
     ? `
       <aside class="coursehub" aria-label="Ambassador hub navigation">
         <div class="coursehub-inner">
           <p class="coursehub-title">Ambassador hub</p>
-          <nav aria-label="Primary">
+          <nav aria-label="Section navigation">
             <ul class="coursehub-list">
-              ${navItems
-                .filter((n) => n.key !== "home")
-                .map((n) => {
-                  const isActive = n.key === activeKey;
-                  return `<li>
-                    <a class="coursehub-link ${isActive ? "is-active" : ""}"
-                       href="${n.href}"
-                       ${isActive ? 'aria-current="page"' : ""}>
-                      ${n.label}
-                    </a>
-                  </li>`;
-                })
-                .join("")}
+              <li><a class="coursehub-link" href="#mission-title">Our mission</a></li>
+              <li><a class="coursehub-link" href="#accordion-start">Overview sections</a></li>
+              <li><a class="coursehub-link" href="#roles-carousel">Possible roles</a></li>
+              <li><a class="coursehub-link" href="#difference-title">How ambassadors make a difference</a></li>
+              <li><a class="coursehub-link" href="#first-steps">First steps</a></li>
             </ul>
           </nav>
         </div>
@@ -87,18 +75,29 @@
           </div>
         </a>
 
-        ${
-          isHome
-            ? ""
-            : `
-          <nav class="topnav" aria-label="Top navigation">
-            <a class="topnav-pill ${activeKey === "home" ? "is-active" : ""}" href="${SITE_ROOT}">Home</a>
-            <a class="topnav-pill ${activeKey === "overview" ? "is-active" : ""}" href="${SITE_ROOT}overview/">Overview</a>
-            <a class="topnav-pill ${activeKey === "downloads" ? "is-active" : ""}" href="${SITE_ROOT}downloads/">Downloads</a>
-            <a class="topnav-pill ${activeKey === "support" ? "is-active" : ""}" href="${SITE_ROOT}support/">Support and contact</a>
-          </nav>
-        `
-        }
+        <nav class="topnav" aria-label="Top navigation">
+          ${navItems
+            .map((n) => {
+              const isExternal = n.href.startsWith("mailto:");
+              const isActive =
+                !isExternal &&
+                ((n.key === "about" && (path === SITE_ROOT || path.includes("/about/"))) ||
+                  (n.key === "roles" && path.includes("/overview/")) ||
+                  (n.key === "get-started" && path.includes("/overview/")) ||
+                  (n.key === "downloads" && path.includes("/downloads/")) ||
+                  (n.key === "support" && path.includes("/support/")));
+              return `
+                <a
+                  class="topnav-pill ${isActive ? "is-active" : ""}"
+                  href="${n.href}"
+                  ${isActive ? 'aria-current="page"' : ""}
+                >
+                  ${n.label}
+                </a>
+              `;
+            })
+            .join("")}
+        </nav>
       </div>
     </header>
   `;
@@ -115,7 +114,8 @@
           <div class="footercol">
             <p><strong>Navigation</strong></p>
             <ul class="footerlinks">
-              <li><a href="${SITE_ROOT}overview/">Overview</a></li>
+              <li><a href="${SITE_ROOT}about/">About this hub</a></li>
+              <li><a href="${SITE_ROOT}overview/">Ambassador overview</a></li>
               <li><a href="${SITE_ROOT}downloads/">Downloads</a></li>
               <li><a href="${SITE_ROOT}support/">Support and contact</a></li>
             </ul>
@@ -188,7 +188,7 @@
     { rel: "manifest", href: `${base}/site.webmanifest` }
   ];
 
-  links.forEach(attrs => {
+  links.forEach((attrs) => {
     const link = document.createElement("link");
     Object.entries(attrs).forEach(([k, v]) => link.setAttribute(k, v));
     head.appendChild(link);
