@@ -1,79 +1,85 @@
-# Y Cam Cyntaf – Digital Learning Hub
+# Tidy Butt Ambassadors Hub
 
-This repository hosts the digital learning hub for **Y Cam Cyntaf**, a gentle, community-based Welsh language course delivered by Tidy Butt.
+This repository hosts the developing digital hub for **Tidy Butt Ambassadors**.
 
-The site is designed to support live sessions with low-pressure digital activities that help learners feel welcomed, confident, and connected — without tests, grades, or performance expectations.
-
----
-
-## 🌱 What is Y Cam Cyntaf?
-
-Y Cam Cyntaf means *“The First Step”*.
-
-It is a beginner-friendly introduction to Welsh that prioritises:
-- Confidence over correctness  
-- Belonging over performance  
-- Small, realistic steps over formal assessment  
-
-Learners are encouraged to listen, notice, try a few words, and celebrate progress in ways that suit their energy and wellbeing.
+The site is being adapted from the original Y Cam Cyntaf structure and is intended to provide a welcoming, accessible starting point for people who want to find out more about becoming involved in supporting Tidy Butt, its community, and its wider wellbeing-focused work.
 
 ---
 
-## 🧠 How the digital hub is used
+## 💛 What is the Tidy Butt Ambassadors Hub?
 
-This site supports the course by providing:
-- Orientation materials to reduce pressure before Session 1  
-- Session pages with a consistent structure:
-  - Get Ready  
-  - Live session  
-  - After the session  
-  - Optional curiosity threads  
-- Optional printable and offline-friendly resources  
-- A **private “Distance Travelled” confidence check-in** that learners can use at the start and end of the course
+The hub is being developed as a central space for:
 
-If learners have limited time or energy, completing just the **Get Ready** step is always enough.
+- welcoming potential ambassadors
+- introducing the purpose of the ambassador community
+- explaining what the role may involve
+- signposting support and useful resources
+- sharing downloadable materials and guidance
+
+The aim is to create a digital space that feels clear, supportive, and easy to navigate.
 
 ---
 
-## 🔒 Privacy and data approach
+## 🌱 Current direction
 
-The digital hub is intentionally low-risk and privacy-first.
+The first phase of the site focuses on a simple ambassador-facing journey:
 
-- No accounts or logins are required  
-- Learner reflections are not graded or assessed  
-- The Distance Travelled check-in is private by default  
-- Any data sharing is optional, anonymous, and learner-controlled  
+- a homepage that introduces the hub
+- an overview page for people asking “So you want to be an ambassador?”
+- retained downloads and support pages
+- updated navigation and branding aligned to the ambassador programme
+- a dedicated expression of interest page
 
-This approach supports psychological safety and reduces barriers to participation.
+Over time, this hub may expand to include:
+
+- possible ambassador roles
+- onboarding information
+- first steps and early conversations
+- wellbeing, safeguarding, and boundary guidance
+- FAQs and practical resources
 
 ---
 
 ## 🛠 Technical overview
 
-- Built with plain HTML, CSS, and JavaScript  
-- Hosted using GitHub Pages  
-- Designed to be mobile-friendly and accessible  
-- No external frameworks or trackers  
-- Offline and print-friendly where possible  
+- Built with plain HTML, CSS, and JavaScript
+- Hosted using GitHub Pages
+- Designed to be mobile-friendly and accessible
+- Uses a shared layout shell with reusable navigation and footer elements
+- Adapted from the Y Cam Cyntaf repository structure for faster development
 
-The structure is intentionally simple so it can be maintained and adapted easily.
+The structure is intentionally simple so that pages can be iterated quickly as the ambassador programme develops.
 
 ---
 
-## 💛 About Tidy Butt
+## ♿ Accessibility approach
 
-Tidy Butt is a community-focused organisation working at the intersection of wellbeing, language, connection, and place.
+The hub is intended to remain:
 
-Y Cam Cyntaf is part of a wider effort to create welcoming, inclusive spaces where people can reconnect with Welsh in ways that feel safe, social, and human.
+- easy to navigate
+- clear in structure
+- readable across devices
+- usable with keyboard navigation
+- visually consistent with Tidy Butt’s wider digital style
+
+As the site develops, content patterns such as accordions, tiles, and call-to-action panels should continue to support accessibility and low-friction use.
+
+---
+
+## 💬 About Tidy Butt
+
+Tidy Butt is a community-focused organisation working around mental health, wellbeing, connection, and community support.
+
+This ambassador hub is part of a wider effort to create supportive, human-centred ways for people to get involved and contribute.
 
 ---
 
 ## 📄 Licence and reuse
 
-Unless otherwise stated, content in this repository is provided for educational and community use.
+Unless otherwise stated, content in this repository is provided for educational, community, and organisational development use.
 
 If you would like to reuse, adapt, or build on this work, please get in touch with Tidy Butt.
 
 ---
 
-*Y Cam Cyntaf is about taking a first step — and knowing that small steps still count.*
+*This hub is about helping people take a first step into supporting Tidy Butt with clarity, confidence, and care.*
