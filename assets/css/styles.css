@@ -1,12 +1,4 @@
 /* =========================================================
-   Tidy Butt Ambassador (GitHub Pages) styles.css
-   Theme aligned to tidybutt.co.uk aesthetic
-   - Orange: content CTAs + carousel buttons + benchmark action buttons
-   - Purple: nav (top + sidebar) highlights
-   - Soft glow behind cards (light blue, low intensity)
-   ========================================================= */
-
-/* =========================================================
    Tidy Butt Ambassadors Hub styles
    ========================================================= */
 
@@ -445,7 +437,12 @@ li{margin:0 0 6px 0}
   background: rgba(67,167,227,0.10);
   border:1px solid rgba(67,167,227,0.24);
 }
-
+.tb-mission-continue-line{
+  margin:16px 0 0;
+  font-weight:800;
+  color:rgba(11,18,32,0.82);
+  text-align:center;
+}
 .tb-accordion{
   margin-top:24px;
   display:grid;
