@@ -37,15 +37,21 @@
       }
 
       function makeLeaf() {
+        const variants = ["rounded", "curled", "slender", "double"];
+        const variant = variants[Math.floor(Math.random() * variants.length)];
+
         return {
-          x: -60 - Math.random() * 160,
+          variant,
+          x: -80 - Math.random() * 180,
           y: Math.random() * height,
-          size: 7 + Math.random() * 9,
-          dx: 0.35 + Math.random() * 0.50,
-          dy: -0.06 + Math.random() * 0.12,
+          size: 8 + Math.random() * 12,
+          dx: 0.28 + Math.random() * 0.55,
+          dy: -0.10 + Math.random() * 0.20,
           sway: Math.random() * Math.PI * 2,
           rot: Math.random() * Math.PI * 2,
-          color: Math.random() > 0.5 ? "rgba(240,136,56,0.12)" : "rgba(107,32,210,0.10)"
+          curl: 0.35 + Math.random() * 0.45,
+          alpha: 0.10 + Math.random() * 0.08,
+          colorBase: Math.random() > 0.5 ? "240,136,56" : "107,32,210"
         };
       }
 
@@ -133,25 +139,106 @@
       }
       
       function drawLeaf(leaf) {
-        const swayX = Math.sin(frame * 0.018 + leaf.sway) * 6;
-        const swayY = Math.cos(frame * 0.015 + leaf.sway) * 2;
-        const swayR = Math.sin(frame * 0.012 + leaf.sway) * 0.35;
+        const swayX = Math.sin(frame * 0.018 + leaf.sway) * 7;
+        const swayY = Math.cos(frame * 0.014 + leaf.sway) * 2.5;
+        const swayR = Math.sin(frame * 0.010 + leaf.sway) * 0.42;
 
         ctx.save();
         ctx.translate(leaf.x + swayX, leaf.y + swayY);
         ctx.rotate(leaf.rot + swayR);
-        ctx.fillStyle = leaf.color;
+        ctx.fillStyle = `rgba(${leaf.colorBase},${leaf.alpha})`;
+        ctx.strokeStyle = `rgba(${leaf.colorBase},${Math.min(leaf.alpha + 0.06, 0.24)})`;
+        ctx.lineWidth = 1;
+
+        if (leaf.variant === "rounded") {
+          ctx.beginPath();
+          ctx.moveTo(0, -leaf.size);
+          ctx.bezierCurveTo(
+            leaf.size * 0.95, -leaf.size * 0.40,
+            leaf.size * 0.82, leaf.size * 0.72,
+            0, leaf.size
+          );
+          ctx.bezierCurveTo(
+            -leaf.size * 0.92, leaf.size * 0.68,
+            -leaf.size * 0.98, -leaf.size * 0.36,
+            0, -leaf.size
+          );
+          ctx.fill();
+        } else if (leaf.variant === "curled") {
+          ctx.beginPath();
+          ctx.moveTo(-leaf.size * 0.22, -leaf.size);
+          ctx.bezierCurveTo(
+            leaf.size * 0.88, -leaf.size * 0.82,
+            leaf.size * 0.92, leaf.size * 0.22,
+            leaf.size * 0.14, leaf.size
+          );
+          ctx.bezierCurveTo(
+            -leaf.size * 0.50, leaf.size * 0.54,
+            -leaf.size * 0.58, -leaf.size * 0.10,
+            -leaf.size * 0.22, -leaf.size
+          );
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.moveTo(leaf.size * 0.05, -leaf.size * 0.72);
+          ctx.quadraticCurveTo(
+            leaf.size * 0.72, -leaf.size * 0.10,
+            leaf.size * 0.22, leaf.size * 0.42
+          );
+          ctx.stroke();
+        } else if (leaf.variant === "slender") {
+          ctx.beginPath();
+          ctx.moveTo(0, -leaf.size * 1.15);
+          ctx.bezierCurveTo(
+            leaf.size * 0.45, -leaf.size * 0.35,
+            leaf.size * 0.34, leaf.size * 0.78,
+            0, leaf.size * 1.05
+          );
+          ctx.bezierCurveTo(
+            -leaf.size * 0.30, leaf.size * 0.70,
+            -leaf.size * 0.44, -leaf.size * 0.28,
+            0, -leaf.size * 1.15
+          );
+          ctx.fill();
+        } else {
+          ctx.beginPath();
+          ctx.moveTo(0, -leaf.size);
+          ctx.bezierCurveTo(
+            leaf.size * 0.82, -leaf.size * 0.28,
+            leaf.size * 0.62, leaf.size * 0.48,
+            0, leaf.size * 0.55
+          );
+          ctx.bezierCurveTo(
+            -leaf.size * 0.66, leaf.size * 0.46,
+            -leaf.size * 0.80, -leaf.size * 0.22,
+            0, -leaf.size
+          );
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.moveTo(0, -leaf.size * 0.28);
+          ctx.bezierCurveTo(
+            leaf.size * 0.66, 0,
+            leaf.size * 0.56, leaf.size * 0.88,
+            0, leaf.size * 1.02
+          );
+          ctx.bezierCurveTo(
+            -leaf.size * 0.52, leaf.size * 0.84,
+            -leaf.size * 0.60, 0,
+            0, -leaf.size * 0.28
+          );
+          ctx.fill();
+        }
+
         ctx.beginPath();
-        ctx.moveTo(0, -leaf.size * 0.95);
-        ctx.quadraticCurveTo(leaf.size * 0.95, -leaf.size * 0.12, 0, leaf.size);
-        ctx.quadraticCurveTo(-leaf.size * 0.95, -leaf.size * 0.12, 0, -leaf.size * 0.95);
-        ctx.fill();
-        ctx.restore();
+        ctx.moveTo(0, -leaf.size * 0.86);
+        ctx.lineTo(0, leaf.size * 0.90);
+        ctx.stroke();
 
         leaf.x += leaf.dx;
         leaf.y += leaf.dy;
 
-        if (leaf.x > width + 80 || leaf.y < -40 || leaf.y > height + 40) {
+        if (leaf.x > width + 100 || leaf.y < -60 || leaf.y > height + 60) {
           Object.assign(leaf, makeLeaf());
         }
       }
