@@ -165,7 +165,7 @@
   shell.className = "pageshell";
   shell.setAttribute("data-page-key", activeKey);
 
-  shell.innerHTML = `
+    shell.innerHTML = `
     ${headerHtml}
     <main id="main" class="pagemain">
       <div class="pagelayout ${wantsSidebar ? "has-sidebar" : "no-sidebar"}">
@@ -176,9 +176,6 @@
       </div>
     </main>
     ${footerHtml}
-    <div class="express-interest-float">
-      <a href="${EXPRESS_INTEREST_LINK}" data-mailto-hint="Opens your email app to contact Tidy Butt.">Express interest</a>
-    </div>
   `;
 
   const target = shell.querySelector("#pagepanel-inner");
