@@ -349,6 +349,124 @@ li{margin:0 0 6px 0}
   color:#0b1220;
 }
 
+.hero-title-panel{
+  width:min(860px, 100%);
+  margin:0 auto 24px;
+  padding:24px 26px 22px;
+  border-radius:26px;
+  background: rgba(255,255,255,0.88);
+  border:1px solid rgba(20,30,60,0.10);
+  box-shadow: var(--shadowSoft), 0 0 28px var(--glow);
+  text-align:center;
+  backdrop-filter: blur(10px);
+}
+
+.hero-title-panel--compact{
+  width:min(820px, 100%);
+}
+
+.hero-kicker{
+  margin:0 0 8px 0;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(107,32,210,0.88);
+}
+
+.hero-title-tagline{
+  margin-bottom:0;
+  font-size:1.05rem;
+}
+
+.hero-home-copy{
+  width:min(860px, 100%);
+  margin:0 auto;
+}
+
+.hero-home-cta-card--warm{
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84));
+  box-shadow: var(--shadowSoft), 0 0 24px var(--glow), 0 18px 40px rgba(107,32,210,0.08);
+}
+
+.cta-row--soft{
+  border-top:1px solid rgba(20,30,60,0.08);
+}
+
+.ambassador-pulse-strong{
+  position:relative;
+}
+
+.pagepanel-inner a.cta.ambassador-pulse-strong,
+a.cta.ambassador-pulse-strong{
+  animation: ambassadorPulseStrong 2.15s ease-in-out infinite;
+}
+
+@keyframes ambassadorPulseStrong{
+  0%{
+    transform:translateY(0);
+    box-shadow: 0 12px 24px rgba(17,24,39,0.12), 0 0 0 0 rgba(240,136,56,0.28);
+  }
+  35%{
+    transform:translateY(-2px);
+    box-shadow: 0 16px 28px rgba(17,24,39,0.14), 0 0 0 8px rgba(240,136,56,0.12);
+  }
+  70%{
+    transform:translateY(0);
+    box-shadow: 0 12px 24px rgba(17,24,39,0.12), 0 0 0 18px rgba(240,136,56,0);
+  }
+  100%{
+    transform:translateY(0);
+    box-shadow: 0 12px 24px rgba(17,24,39,0.12), 0 0 0 0 rgba(240,136,56,0);
+  }
+}
+
+.ambassador-tilegrid-home{
+  margin-top:24px;
+}
+
+.tile--feature .tiletext .eyebrow{
+  margin:0 0 8px 0;
+  font-size:13px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:rgba(255,255,255,0.90);
+}
+
+.sessionsblock-home{
+  margin-top:24px;
+}
+
+.sessionlinks-home{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.roles-page-section{
+  margin-top:24px;
+}
+
+.roles-page-card{
+  background: rgba(255,255,255,0.88);
+  border:1px solid rgba(20,30,60,0.10);
+  border-radius:24px;
+  padding:28px;
+  box-shadow: var(--shadowHard), 0 0 28px var(--glow);
+}
+
+@media (max-width: 980px){
+  .hero-title-panel{
+    padding:20px 18px 18px;
+  }
+
+  .roles-page-card{
+    padding:20px 16px;
+  }
+
+  .sessionlinks-home{
+    grid-template-columns:1fr;
+  }
+}
 .tb-soft-intro-card{
   width:min(900px, 100%);
   margin:22px auto 0;
