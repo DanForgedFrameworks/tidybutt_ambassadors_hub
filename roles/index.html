@@ -14,24 +14,21 @@
 </head>
 <body>
   <div data-page-content data-sidebar="false" data-active="roles">
-    <section class="hero hero-ambient hero-overview">
+    <section class="hero hero-ambient hero-overview hero-overview-clean">
       <canvas class="hero-ripple-canvas" aria-hidden="true"></canvas>
 
       <div class="hero-content-wrap hero-overview-content">
         <div class="hero-home-inner">
-          <div class="hero-title-panel hero-title-panel--compact">
-            <p class="hero-kicker">Possible roles</p>
-            <h1>Different ways to support as an ambassador</h1>
-            <p class="tagline hero-title-tagline">Not everyone has to do everything. People can contribute in ways that suit their confidence, interests, availability, and strengths.</p>
-          </div>
+          <div class="hero-overview-card" aria-labelledby="roles-hero-title">
+            <h1 id="roles-hero-title">Possible Ambassador roles</h1>
+            <p class="hero-overview-subline">Not everyone has to do everything. People can contribute in ways that suit their confidence, interests, availability, and strengths.</p>
+            <p class="hero-overview-summary">
+              This page gives you a clearer look at the kinds of roles that may exist within Tidy Butt, and the different ways someone might help.
+            </p>
 
-          <div class="tb-soft-intro-card tb-soft-intro-card--embedded">
-            <p class="intro intro--wide">
-              Ambassadors may be involved in different types of activities depending on their interests, confidence, and availability. These roles may overlap, and people may do more than one.
-            </p>
-            <p class="intro intro--wide">
-              This page gives you a clearer look at the kinds of ambassador roles that may exist within Tidy Butt.
-            </p>
+            <div class="hero-home-actions hero-home-actions--single">
+              <a class="cta ambassador-pulse-soft" href="#roles-page-title">Explore the roles</a>
+            </div>
           </div>
         </div>
       </div>
@@ -39,22 +36,21 @@
 
     <section class="tb-contained-block roles-page-section" aria-labelledby="roles-page-title">
       <div class="roles-page-card">
-        <div class="roles-carousel-wrap roles-carousel-wrap--inside">
-          <div class="roles-carousel-heading">
+        <div class="roles-carousel-wrap roles-carousel-wrap--inside roles-carousel-wrap--page">
+          <div class="roles-carousel-heading roles-carousel-heading--compact">
             <div>
-              <h2 id="roles-page-title">Possible ambassador roles</h2>
-              <p class="small">Explore the different ways ambassadors may support Tidy Butt and its community.</p>
-            </div>
-            <div class="roles-carousel-controls">
-              <button type="button" data-carousel-prev>Previous</button>
-              <button type="button" data-carousel-next>Next</button>
+              <h2 id="roles-page-title">Possible Ambassador roles</h2>
+              <p class="small">Explore the different ways Ambassadors may support Tidy Butt and its community.</p>
             </div>
           </div>
+
+          <button class="roles-carousel-chevron roles-carousel-chevron--left" type="button" data-carousel-prev aria-label="Previous role">‹</button>
+          <button class="roles-carousel-chevron roles-carousel-chevron--right" type="button" data-carousel-next aria-label="Next role">›</button>
 
           <div class="role-carousel" data-role-carousel>
             <article class="role-card">
               <div class="role-card-title-wrap">
-                <h3>Community Activity Ambassador</h3>
+                <h3>Community</h3>
               </div>
               <p>Supporting community activities and sessions, welcoming new people, helping people feel comfortable in groups, and encouraging participation.</p>
               <ul>
@@ -68,7 +64,7 @@
 
             <article class="role-card">
               <div class="role-card-title-wrap">
-                <h3>Outreach or Awareness Ambassador</h3>
+                <h3>Outreach and Awareness</h3>
               </div>
               <p>Helping people understand what Tidy Butt offers and sharing information about available support and opportunities.</p>
               <ul>
@@ -81,7 +77,7 @@
 
             <article class="role-card">
               <div class="role-card-title-wrap">
-                <h3>Events and Support Ambassador</h3>
+                <h3>Events and Support</h3>
               </div>
               <p>Supporting events, helping them run smoothly, and helping participants feel safe, welcome, and included.</p>
               <ul>
@@ -94,7 +90,7 @@
 
             <article class="role-card">
               <div class="role-card-title-wrap">
-                <h3>Admin or Coordination Support</h3>
+                <h3>Admin and Coordination</h3>
               </div>
               <p>Helping behind the scenes with communication, coordination, planning, and practical organisation.</p>
               <ul>
@@ -108,8 +104,8 @@
         </div>
 
         <div class="cta-row cta-row-centre">
-          <a class="cta" href="../overview/">Go back to the ambassador overview</a>
-          <a class="cta ambassador-pulse ambassador-pulse-strong" href="mailto:hello@tidybutt.co.uk?subject=Expression%20of%20interest%20%E2%80%93%20Tidy%20Butt%20Ambassador&body=Introduce%20yourself%3A%0A%0AWhy%20would%20you%20like%20to%20get%20involved%3F%0A%0ATell%20us%20a%20bit%20about%20your%20interests%2C%20skills%2C%20or%20any%20ideas%20you%20have%3A%0A%0A">Express interest</a>
+          <a class="cta" href="../overview/">Go back to the Ambassador overview</a>
+          <a class="cta ambassador-pulse-soft" href="mailto:hello@tidybutt.co.uk?subject=Expression%20of%20interest%20%E2%80%93%20Tidy%20Butt%20Ambassador&body=Introduce%20yourself%3A%0A%0AWhy%20would%20you%20like%20to%20get%20involved%3F%0A%0ATell%20us%20a%20bit%20about%20your%20interests%2C%20skills%2C%20or%20any%20ideas%20you%20have%3A%0A%0A" data-mailto-hint="Opens your email app to contact Tidy Butt.">Express interest</a>
         </div>
       </div>
     </section>
