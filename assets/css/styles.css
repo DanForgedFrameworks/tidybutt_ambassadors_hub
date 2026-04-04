@@ -626,6 +626,106 @@ a.cta.ambassador-pulse-soft{
   filter:brightness(0.98);
 }
 
+.roles-carousel-heading--compact{
+  justify-content:center;
+}
+
+.roles-carousel-wrap--inside,
+.roles-carousel-wrap--page{
+  position:relative;
+}
+
+.roles-carousel-chevron{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,0.10);
+  background: var(--tidy-orange);
+  color:#1b1205;
+  box-shadow: var(--shadowSoft);
+  font-size:1.8rem;
+  line-height:1;
+  font-weight:900;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:5;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.roles-carousel-chevron:hover{
+  filter:brightness(0.98);
+}
+
+.roles-carousel-chevron--left{
+  left:8px;
+}
+
+.roles-carousel-chevron--right{
+  right:8px;
+}
+
+.hero-home-actions--single{
+  justify-content:center;
+}
+
+.hero-overview-card--mission-led{
+  width:min(760px, 100%);
+}
+
+.tb-section-kicker{
+  margin:0 0 8px 0;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(107,32,210,0.88);
+}
+
+.tb-mission-card--featured{
+  position:relative;
+  margin-top:24px;
+  padding:30px 30px 28px;
+  border-radius:26px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.90));
+  box-shadow:
+    var(--shadowHard),
+    0 0 0 1px rgba(0,0,0,0.02),
+    0 0 34px rgba(107,32,210,0.10);
+}
+
+.tb-mission-card--featured h2{
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-top:0;
+}
+
+@media (max-width: 980px){
+  .roles-carousel-chevron{
+    top:auto;
+    bottom:-6px;
+    transform:none;
+    width:42px;
+    height:42px;
+  }
+
+  .roles-carousel-chevron--left{
+    left:calc(50% - 52px);
+  }
+
+  .roles-carousel-chevron--right{
+    right:calc(50% - 52px);
+  }
+
+  .roles-carousel-wrap--inside,
+  .roles-carousel-wrap--page{
+    padding-bottom:52px;
+  }
+}
 .role-carousel{
   position:relative;
   margin-top:18px;
