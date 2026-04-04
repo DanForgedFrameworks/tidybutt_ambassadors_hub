@@ -41,26 +41,28 @@
         return {
           x: Math.random() * width,
           y: seedY ?? (-80 - Math.random() * 140),
-          len: 10 + Math.random() * 12,
-          speed: 2.1 + Math.random() * 1.3,
-          drift: -0.05 + Math.random() * 0.10,
+          len: 10 + Math.random() * 14,
+          speed: 2.6 + Math.random() * 1.8,
+          drift: -0.07 + Math.random() * 0.14,
           alpha: 0.08 + Math.random() * 0.08
         };
       }
 
       function makeLeaf() {
         const variants = ["rounded", "curled", "slender"];
+        const orangeBias = Math.random() < 0.48;
         return {
           variant: variants[Math.floor(Math.random() * variants.length)],
           x: -60 - Math.random() * 140,
           y: Math.random() * height,
-          size: 10 + Math.random() * 8,
-          dx: 0.08 + Math.random() * 0.12,
-          dy: -0.02 + Math.random() * 0.04,
+          size: 9 + Math.random() * 10,
+          dx: 0.14 + Math.random() * 0.26,
+          dy: -0.04 + Math.random() * 0.08,
           sway: Math.random() * Math.PI * 2,
           rot: Math.random() * Math.PI * 2,
-          alpha: 0.025 + Math.random() * 0.025,
-          colorBase: Math.random() > 0.5 ? "240,136,56" : "107,32,210"
+          pace: 0.7 + Math.random() * 0.9,
+          alpha: 0.030 + Math.random() * 0.035,
+          colorBase: orangeBias ? "240,136,56" : "107,32,210"
         };
       }
 
@@ -69,8 +71,8 @@
         ripples = [];
         leaves = [];
 
-        const dropCount = prefersReducedMotion ? 0 : Math.max(10, Math.floor(width / 120));
-        const leafCount = prefersReducedMotion ? 2 : Math.max(4, Math.floor(width / 420));
+        const dropCount = prefersReducedMotion ? 0 : Math.max(12, Math.floor(width / 105));
+        const leafCount = prefersReducedMotion ? 2 : Math.max(6, Math.floor(width / 260));
 
         for (let i = 0; i < dropCount; i += 1) {
           drops.push(makeDrop(Math.random() * height));
@@ -86,8 +88,8 @@
           x,
           y,
           r: 1.5,
-          alpha: 0.10 + Math.random() * 0.06,
-          line: 0.8 + Math.random() * 0.3
+          alpha: 0.10 + Math.random() * 0.08,
+          line: 0.8 + Math.random() * 0.35
         });
       }
 
@@ -95,8 +97,8 @@
         const waterTop = height * 0.80;
         return (
           waterTop +
-          Math.sin((x * 0.010) + frame * 0.010) * 3 +
-          Math.sin((x * 0.018) + frame * 0.006) * 1.5
+          Math.sin((x * 0.010) + frame * 0.013) * 3.2 +
+          Math.sin((x * 0.018) + frame * 0.008) * 1.6
         );
       }
 
@@ -115,8 +117,8 @@
         ctx.closePath();
 
         const waterGrad = ctx.createLinearGradient(0, waterTop - 10, 0, height);
-        waterGrad.addColorStop(0, "rgba(255,255,255,0.035)");
-        waterGrad.addColorStop(1, "rgba(255,255,255,0.01)");
+        waterGrad.addColorStop(0, "rgba(255,255,255,0.04)");
+        waterGrad.addColorStop(1, "rgba(255,255,255,0.012)");
         ctx.fillStyle = waterGrad;
         ctx.fill();
         ctx.restore();
@@ -128,7 +130,7 @@
           ctx.moveTo(drop.x, drop.y);
           ctx.lineTo(drop.x + drop.drift * 4, drop.y + drop.len);
           ctx.strokeStyle = `rgba(255,255,255,${drop.alpha})`;
-          ctx.lineWidth = 0.85;
+          ctx.lineWidth = 0.9;
           ctx.stroke();
 
           drop.x += drop.drift;
@@ -167,11 +169,11 @@
             ctx.stroke();
           }
 
-          ripple.r += 0.45;
-          ripple.alpha *= 0.97;
+          ripple.r += 0.52;
+          ripple.alpha *= 0.968;
         });
 
-        ripples = ripples.filter((r) => r.alpha > 0.015 && r.r < 30);
+        ripples = ripples.filter((r) => r.alpha > 0.015 && r.r < 32);
       }
 
       function drawLeafShape(leaf) {
@@ -227,23 +229,23 @@
 
       function drawLeaves() {
         leaves.forEach((leaf) => {
-          const swayX = Math.sin(frame * 0.004 + leaf.sway) * 3;
-          const swayY = Math.cos(frame * 0.003 + leaf.sway) * 1;
-          const swayR = Math.sin(frame * 0.0025 + leaf.sway) * 0.10;
+          const swayX = Math.sin(frame * (0.0045 * leaf.pace) + leaf.sway) * 4;
+          const swayY = Math.cos(frame * (0.0032 * leaf.pace) + leaf.sway) * 1.2;
+          const swayR = Math.sin(frame * (0.0030 * leaf.pace) + leaf.sway) * 0.12;
 
           ctx.save();
           ctx.translate(leaf.x + swayX, leaf.y + swayY);
           ctx.rotate(leaf.rot + swayR);
 
           ctx.fillStyle = `rgba(${leaf.colorBase},${leaf.alpha})`;
-          ctx.strokeStyle = `rgba(${leaf.colorBase},${leaf.alpha * 1.5})`;
-          ctx.lineWidth = 0.6;
+          ctx.strokeStyle = `rgba(${leaf.colorBase},${leaf.alpha * 1.55})`;
+          ctx.lineWidth = 0.65;
 
           drawLeafShape(leaf);
           ctx.restore();
 
-          leaf.x += leaf.dx;
-          leaf.y += leaf.dy;
+          leaf.x += leaf.dx * leaf.pace;
+          leaf.y += leaf.dy * leaf.pace;
 
           if (leaf.x > width + 80 || leaf.y < -40 || leaf.y > height + 40) {
             Object.assign(leaf, makeLeaf());
@@ -258,7 +260,7 @@
         const grad = ctx.createLinearGradient(0, 0, width, height);
         grad.addColorStop(0, "rgba(107,32,210,0.05)");
         grad.addColorStop(0.5, "rgba(67,167,227,0.04)");
-        grad.addColorStop(1, "rgba(240,136,56,0.025)");
+        grad.addColorStop(1, "rgba(240,136,56,0.03)");
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
 
