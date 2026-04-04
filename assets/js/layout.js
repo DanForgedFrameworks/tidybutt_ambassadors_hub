@@ -35,7 +35,6 @@
     { href: SITE_ROOT + "about/", label: "About this hub", key: "about" },
     { href: SITE_ROOT + "overview/", label: "Ambassador overview", key: "overview" },
     { href: SITE_ROOT + "roles/", label: "Possible roles", key: "roles" },
-    { href: EXPRESS_INTEREST_LINK, label: "Express interest", key: "express-interest" },
     { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" },
     { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" }
   ];
