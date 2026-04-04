@@ -177,7 +177,7 @@
     </main>
     ${footerHtml}
     <div class="express-interest-float">
-      <a href="${EXPRESS_INTEREST_LINK}">Express interest</a>
+      <a href="${EXPRESS_INTEREST_LINK}" data-mailto-hint="Opens your email app to contact Tidy Butt.">Express interest</a>
     </div>
   `;
 
