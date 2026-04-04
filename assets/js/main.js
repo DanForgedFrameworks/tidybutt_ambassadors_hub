@@ -3,11 +3,16 @@
     const canvases = document.querySelectorAll(".hero-ripple-canvas");
 
     canvases.forEach((canvas) => {
+      if (canvas.dataset.ambientReady === "true") return;
+      canvas.dataset.ambientReady = "true";
+
       const parent = canvas.parentElement;
       if (!parent) return;
 
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       let width = 0;
       let height = 0;
@@ -20,37 +25,38 @@
       function resize() {
         const rect = parent.getBoundingClientRect();
         width = Math.max(10, Math.floor(rect.width));
-        height = Math.max(320, Math.floor(rect.height));
-        canvas.width = width;
-        canvas.height = height;
+        height = Math.max(300, Math.floor(rect.height));
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
       function makeDrop(seedY = null) {
         return {
           x: Math.random() * width,
-          y: seedY ?? (-40 - Math.random() * 120),
-          len: 12 + Math.random() * 18,
-          speed: 4.6 + Math.random() * 3.4,
-          drift: -0.2 + Math.random() * 0.35,
-          alpha: 0.46 + Math.random() * 0.24
+          y: seedY ?? (-120 - Math.random() * 140),
+          len: 16 + Math.random() * 22,
+          speed: 5.2 + Math.random() * 3.8,
+          drift: -0.12 + Math.random() * 0.24,
+          alpha: 0.18 + Math.random() * 0.18
         };
       }
 
       function makeLeaf() {
-        const variants = ["rounded", "curled", "slender", "double"];
-        const variant = variants[Math.floor(Math.random() * variants.length)];
-
+        const variants = ["rounded", "curled", "slender"];
         return {
-          variant,
+          variant: variants[Math.floor(Math.random() * variants.length)],
           x: -80 - Math.random() * 180,
           y: Math.random() * height,
-          size: 8 + Math.random() * 12,
-          dx: 0.28 + Math.random() * 0.55,
-          dy: -0.10 + Math.random() * 0.20,
+          size: 8 + Math.random() * 10,
+          dx: 0.20 + Math.random() * 0.28,
+          dy: -0.06 + Math.random() * 0.12,
           sway: Math.random() * Math.PI * 2,
           rot: Math.random() * Math.PI * 2,
-          curl: 0.35 + Math.random() * 0.45,
-          alpha: 0.10 + Math.random() * 0.08,
+          alpha: 0.08 + Math.random() * 0.06,
           colorBase: Math.random() > 0.5 ? "240,136,56" : "107,32,210"
         };
       }
@@ -60,8 +66,8 @@
         ripples = [];
         leaves = [];
 
-        const dropCount = Math.max(24, Math.floor(width / 55));
-        const leafCount = Math.max(5, Math.floor(width / 260));
+        const dropCount = prefersReducedMotion ? 0 : Math.max(32, Math.floor(width / 34));
+        const leafCount = prefersReducedMotion ? 2 : Math.max(5, Math.floor(width / 260));
 
         for (let i = 0; i < dropCount; i += 1) {
           drops.push(makeDrop(Math.random() * height));
@@ -76,163 +82,165 @@
         ripples.push({
           x,
           y,
-          r: 2,
-          alpha: 0.48 + Math.random() * 0.18,
-          line: 1.3 + Math.random() * 0.5
+          r: 1.5,
+          alpha: 0.22 + Math.random() * 0.14,
+          line: 1 + Math.random() * 0.4
         });
       }
+
+      function drawWaterSurface() {
+        const waterTop = height * 0.72;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(0, height);
+
+        for (let x = 0; x <= width + 6; x += 6) {
+          const y =
+            waterTop +
+            Math.sin((x * 0.012) + frame * 0.028) * 5 +
+            Math.sin((x * 0.025) + frame * 0.016) * 2.5;
+          ctx.lineTo(x, y);
+        }
+
+        ctx.lineTo(width, height);
+        ctx.closePath();
+
+        const waterGrad = ctx.createLinearGradient(0, waterTop - 10, 0, height);
+        waterGrad.addColorStop(0, "rgba(255,255,255,0.08)");
+        waterGrad.addColorStop(1, "rgba(255,255,255,0.02)");
+        ctx.fillStyle = waterGrad;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function currentSurfaceY(x) {
+        const waterTop = height * 0.72;
+        return (
+          waterTop +
+          Math.sin((x * 0.012) + frame * 0.028) * 5 +
+          Math.sin((x * 0.025) + frame * 0.016) * 2.5
+        );
+      }
+
       function drawRain() {
         drops.forEach((drop) => {
           ctx.beginPath();
           ctx.moveTo(drop.x, drop.y);
-          ctx.lineTo(drop.x + drop.drift * 4, drop.y + drop.len);
+          ctx.lineTo(drop.x + drop.drift * 5, drop.y + drop.len);
           ctx.strokeStyle = `rgba(255,255,255,${drop.alpha})`;
-          ctx.lineWidth = 1.35;
+          ctx.lineWidth = 1.2;
           ctx.stroke();
 
           drop.x += drop.drift;
           drop.y += drop.speed;
 
-          const waterTop = height * 0.60;
-          const waterDepth = height * 0.30;
-          const surfaceY =
-            waterTop +
-            Math.sin((drop.x + frame) * 0.01) * 6 +
-            Math.sin((drop.x * 0.025) + frame * 0.012) * 4;
+          const surfaceY = currentSurfaceY(drop.x);
 
-          const rippleY = Math.min(
-            height - 24,
-            Math.max(waterTop, surfaceY + Math.random() * waterDepth * 0.35)
-          );
+          if (drop.y + drop.len >= surfaceY) {
+            addRipple(drop.x, surfaceY);
+            Object.assign(drop, makeDrop());
+          }
 
-          if (drop.y > rippleY) {
-            addRipple(drop.x, rippleY);
+          if (drop.y > height + 40 || drop.x < -40 || drop.x > width + 40) {
             Object.assign(drop, makeDrop());
           }
         });
       }
+
       function drawRipples() {
         ripples.forEach((ripple) => {
-          for (let i = 0; i < 4; i += 1) {
-            const radius = ripple.r + i * 8;
-
+          for (let i = 0; i < 3; i += 1) {
+            const radius = ripple.r + i * 7;
             ctx.beginPath();
             ctx.ellipse(
               ripple.x,
               ripple.y,
               radius,
-              radius * 0.32,
+              radius * 0.28,
               0,
               0,
               Math.PI * 2
             );
-            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.07, 0)})`;
+            ctx.strokeStyle = `rgba(255,255,255,${Math.max(ripple.alpha - i * 0.05, 0)})`;
             ctx.lineWidth = ripple.line;
             ctx.stroke();
           }
 
-          ripple.r += 0.72;
-          ripple.alpha *= 0.978;
+          ripple.r += 0.8;
+          ripple.alpha *= 0.972;
         });
 
-        ripples = ripples.filter((r) => r.alpha > 0.02 && r.r < 58);
+        ripples = ripples.filter((r) => r.alpha > 0.02 && r.r < 52);
       }
-      
+
       function drawLeaf(leaf) {
-        const swayX = Math.sin(frame * 0.018 + leaf.sway) * 7;
-        const swayY = Math.cos(frame * 0.014 + leaf.sway) * 2.5;
-        const swayR = Math.sin(frame * 0.010 + leaf.sway) * 0.42;
+        const swayX = Math.sin(frame * 0.012 + leaf.sway) * 6;
+        const swayY = Math.cos(frame * 0.010 + leaf.sway) * 2;
+        const swayR = Math.sin(frame * 0.009 + leaf.sway) * 0.24;
 
         ctx.save();
         ctx.translate(leaf.x + swayX, leaf.y + swayY);
         ctx.rotate(leaf.rot + swayR);
         ctx.fillStyle = `rgba(${leaf.colorBase},${leaf.alpha})`;
-        ctx.strokeStyle = `rgba(${leaf.colorBase},${Math.min(leaf.alpha + 0.06, 0.24)})`;
+        ctx.strokeStyle = `rgba(${leaf.colorBase},${Math.min(leaf.alpha + 0.06, 0.22)})`;
         ctx.lineWidth = 1;
 
         if (leaf.variant === "rounded") {
           ctx.beginPath();
           ctx.moveTo(0, -leaf.size);
           ctx.bezierCurveTo(
-            leaf.size * 0.95, -leaf.size * 0.40,
+            leaf.size * 0.90, -leaf.size * 0.34,
             leaf.size * 0.82, leaf.size * 0.72,
             0, leaf.size
           );
           ctx.bezierCurveTo(
-            -leaf.size * 0.92, leaf.size * 0.68,
-            -leaf.size * 0.98, -leaf.size * 0.36,
+            -leaf.size * 0.90, leaf.size * 0.66,
+            -leaf.size * 0.98, -leaf.size * 0.30,
             0, -leaf.size
           );
           ctx.fill();
         } else if (leaf.variant === "curled") {
           ctx.beginPath();
-          ctx.moveTo(-leaf.size * 0.22, -leaf.size);
+          ctx.moveTo(-leaf.size * 0.18, -leaf.size);
           ctx.bezierCurveTo(
-            leaf.size * 0.88, -leaf.size * 0.82,
-            leaf.size * 0.92, leaf.size * 0.22,
-            leaf.size * 0.14, leaf.size
+            leaf.size * 0.84, -leaf.size * 0.76,
+            leaf.size * 0.88, leaf.size * 0.16,
+            leaf.size * 0.08, leaf.size
           );
           ctx.bezierCurveTo(
-            -leaf.size * 0.50, leaf.size * 0.54,
-            -leaf.size * 0.58, -leaf.size * 0.10,
-            -leaf.size * 0.22, -leaf.size
+            -leaf.size * 0.46, leaf.size * 0.48,
+            -leaf.size * 0.54, -leaf.size * 0.10,
+            -leaf.size * 0.18, -leaf.size
           );
           ctx.fill();
 
           ctx.beginPath();
-          ctx.moveTo(leaf.size * 0.05, -leaf.size * 0.72);
+          ctx.moveTo(leaf.size * 0.02, -leaf.size * 0.68);
           ctx.quadraticCurveTo(
-            leaf.size * 0.72, -leaf.size * 0.10,
-            leaf.size * 0.22, leaf.size * 0.42
+            leaf.size * 0.68, -leaf.size * 0.04,
+            leaf.size * 0.18, leaf.size * 0.40
           );
           ctx.stroke();
-        } else if (leaf.variant === "slender") {
-          ctx.beginPath();
-          ctx.moveTo(0, -leaf.size * 1.15);
-          ctx.bezierCurveTo(
-            leaf.size * 0.45, -leaf.size * 0.35,
-            leaf.size * 0.34, leaf.size * 0.78,
-            0, leaf.size * 1.05
-          );
-          ctx.bezierCurveTo(
-            -leaf.size * 0.30, leaf.size * 0.70,
-            -leaf.size * 0.44, -leaf.size * 0.28,
-            0, -leaf.size * 1.15
-          );
-          ctx.fill();
         } else {
           ctx.beginPath();
-          ctx.moveTo(0, -leaf.size);
+          ctx.moveTo(0, -leaf.size * 1.10);
           ctx.bezierCurveTo(
-            leaf.size * 0.82, -leaf.size * 0.28,
-            leaf.size * 0.62, leaf.size * 0.48,
-            0, leaf.size * 0.55
+            leaf.size * 0.42, -leaf.size * 0.30,
+            leaf.size * 0.30, leaf.size * 0.74,
+            0, leaf.size
           );
           ctx.bezierCurveTo(
-            -leaf.size * 0.66, leaf.size * 0.46,
-            -leaf.size * 0.80, -leaf.size * 0.22,
-            0, -leaf.size
-          );
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.moveTo(0, -leaf.size * 0.28);
-          ctx.bezierCurveTo(
-            leaf.size * 0.66, 0,
-            leaf.size * 0.56, leaf.size * 0.88,
-            0, leaf.size * 1.02
-          );
-          ctx.bezierCurveTo(
-            -leaf.size * 0.52, leaf.size * 0.84,
-            -leaf.size * 0.60, 0,
-            0, -leaf.size * 0.28
+            -leaf.size * 0.28, leaf.size * 0.68,
+            -leaf.size * 0.42, -leaf.size * 0.24,
+            0, -leaf.size * 1.10
           );
           ctx.fill();
         }
 
         ctx.beginPath();
-        ctx.moveTo(0, -leaf.size * 0.86);
-        ctx.lineTo(0, leaf.size * 0.90);
+        ctx.moveTo(0, -leaf.size * 0.82);
+        ctx.lineTo(0, leaf.size * 0.86);
         ctx.stroke();
 
         leaf.x += leaf.dx;
@@ -248,27 +256,32 @@
         ctx.clearRect(0, 0, width, height);
 
         const grad = ctx.createLinearGradient(0, 0, width, height);
-        grad.addColorStop(0, "rgba(107,32,210,0.08)");
-        grad.addColorStop(0.5, "rgba(67,167,227,0.06)");
+        grad.addColorStop(0, "rgba(107,32,210,0.10)");
+        grad.addColorStop(0.5, "rgba(67,167,227,0.08)");
         grad.addColorStop(1, "rgba(240,136,56,0.05)");
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
 
-        drawRain();
-        drawRipples();
+        drawWaterSurface();
+        if (!prefersReducedMotion) {
+          drawRain();
+          drawRipples();
+        }
         leaves.forEach(drawLeaf);
 
         animationId = requestAnimationFrame(render);
+      }
+
+      function onResize() {
+        resize();
+        seed();
       }
 
       resize();
       seed();
       render();
 
-      window.addEventListener("resize", () => {
-        resize();
-        seed();
-      });
+      window.addEventListener("resize", onResize);
 
       window.addEventListener("beforeunload", () => {
         if (animationId) cancelAnimationFrame(animationId);
