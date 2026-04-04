@@ -1,13 +1,15 @@
 (function () {
   function detectSiteRoot() {
     const path = window.location.pathname || "/";
-    const marker = "/overview/";
+    const overviewMarker = "/overview/";
     const aboutMarker = "/about/";
+    const rolesMarker = "/roles/";
     const downloadsMarker = "/downloads/";
     const supportMarker = "/support/";
 
-    if (path.includes(marker)) return path.slice(0, path.indexOf(marker)) + "/";
+    if (path.includes(overviewMarker)) return path.slice(0, path.indexOf(overviewMarker)) + "/";
     if (path.includes(aboutMarker)) return path.slice(0, path.indexOf(aboutMarker)) + "/";
+    if (path.includes(rolesMarker)) return path.slice(0, path.indexOf(rolesMarker)) + "/";
     if (path.includes(downloadsMarker)) return path.slice(0, path.indexOf(downloadsMarker)) + "/";
     if (path.includes(supportMarker)) return path.slice(0, path.indexOf(supportMarker)) + "/";
 
@@ -31,8 +33,8 @@
 
   const navItems = [
     { href: SITE_ROOT + "about/", label: "About this hub", key: "about" },
-    { href: SITE_ROOT + "overview/#possible-roles", label: "Possible roles", key: "roles" },
-    { href: SITE_ROOT + "overview/#first-steps", label: "Get started", key: "get-started" },
+    { href: SITE_ROOT + "overview/", label: "Ambassador overview", key: "overview" },
+    { href: SITE_ROOT + "roles/", label: "Possible roles", key: "roles" },
     { href: EXPRESS_INTEREST_LINK, label: "Express interest", key: "express-interest" },
     { href: SITE_ROOT + "support/", label: "Support and contact", key: "support" },
     { href: SITE_ROOT + "downloads/", label: "Downloads", key: "downloads" }
@@ -41,7 +43,8 @@
   function getActiveKeyByPath() {
     if (path === SITE_ROOT || path.endsWith("/tidybutt_ambassadors_hub/")) return "about";
     if (path.includes("/about/")) return "about";
-    if (path.includes("/overview/")) return "roles";
+    if (path.includes("/overview/")) return "overview";
+    if (path.includes("/roles/")) return "roles";
     if (path.includes("/downloads/")) return "downloads";
     if (path.includes("/support/")) return "support";
     return "about";
@@ -103,8 +106,8 @@
             const isActive =
               !isExternal &&
               ((n.key === "about" && (path === SITE_ROOT || path.includes("/about/"))) ||
-                (n.key === "roles" && path.includes("/overview/")) ||
-                (n.key === "get-started" && path.includes("/overview/")) ||
+                (n.key === "overview" && path.includes("/overview/")) ||
+                (n.key === "roles" && path.includes("/roles/")) ||
                 (n.key === "downloads" && path.includes("/downloads/")) ||
                 (n.key === "support" && path.includes("/support/")));
             return `
@@ -136,6 +139,7 @@
             <ul class="footerlinks">
               <li><a href="${SITE_ROOT}about/">About this hub</a></li>
               <li><a href="${SITE_ROOT}overview/">Ambassador overview</a></li>
+              <li><a href="${SITE_ROOT}roles/">Possible roles</a></li>
               <li><a href="${SITE_ROOT}downloads/">Downloads</a></li>
               <li><a href="${SITE_ROOT}support/">Support and contact</a></li>
             </ul>
