@@ -3,59 +3,71 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Y Cam Cyntaf | Downloads</title>
-  <link rel="stylesheet" href="/y-cam-cyntaf/assets/css/styles.css" />
+  <title>Tidy Butt Ambassadors Hub | Downloads</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="shortcut icon" href="../favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Tidy Butt Ambassadors Hub" />
+  <link rel="manifest" href="../site.webmanifest" />
 </head>
 <body>
-  <div data-page-content data-sidebar="true">
-    <h1>Downloads</h1>
-    <p>
-      Here you will find print-friendly versions of key pages and handouts. These will grow across the course.
-    </p>
-    <p>
-      You can also print any full page from this site using your browser (Print → Save as PDF) if that works better for you.
-    </p>
+  <div data-page-content data-sidebar="false" data-active="downloads">
+    <section class="hero hero-ambient hero-overview hero-overview-clean">
+      <canvas class="hero-ripple-canvas" aria-hidden="true"></canvas>
 
-    <div class="tilegrid" style="grid-template-columns: repeat(4, 1fr);">
-      <a class="tile" href="#" aria-disabled="true">
-        <img src="/y-cam-cyntaf/assets/img/tile-downloads.png" alt="Downloads tile" />
-        <div class="tiletext">
-          <p class="title">Orientation overview</p>
-          <p class="desc"><em>Coming soon</em></p>
+      <div class="hero-content-wrap hero-overview-content">
+        <div class="hero-home-inner">
+          <div class="hero-overview-card hero-overview-card--mission-led" aria-labelledby="downloads-hero-title">
+            <h1 id="downloads-hero-title">Downloads</h1>
+            <p class="hero-overview-subline">
+              Offline and print-friendly versions of the ambassador documents.
+            </p>
+            <p class="hero-overview-summary">
+              Download these if you would prefer to read them later, print them, or keep your own copy.
+            </p>
+          </div>
         </div>
-      </a>
+      </div>
+    </section>
 
-      <a class="tile" href="#" aria-disabled="true">
-        <img src="/y-cam-cyntaf/assets/img/tile-downloads.png" alt="Session 1 pack tile" />
-        <div class="tiletext">
-          <p class="title">Session 1 pack</p>
-          <p class="desc"><em>Coming soon</em></p>
-        </div>
-      </a>
+    <section class="tb-contained-block" aria-labelledby="downloads-title">
+      <p class="tb-section-kicker">Resources</p>
+      <h2 id="downloads-title">Available downloads</h2>
+      <p>
+        These downloads are here to make the ambassador information easier to access offline and easier to share.
+      </p>
 
-      <a class="tile" href="#" aria-disabled="true">
-        <img src="/y-cam-cyntaf/assets/img/tile-downloads.png" alt="Sessions 2-6 packs tile" />
-        <div class="tiletext">
-          <p class="title">Sessions 2 to 6 packs</p>
-          <p class="desc"><em>Coming soon</em></p>
-        </div>
-      </a>
+      <div class="tilegrid ambassador-tilegrid" aria-label="Downloadable ambassador documents">
+        <a class="tile tile--feature" href="../assets/downloads/Ambassador%20Overview%20-%20Tidy%20Butt.pdf" target="_blank" rel="noopener">
+          <img src="../assets/img/TB_empower.png" alt="Abstract illustration representing the ambassador overview document." />
+          <div class="tiletext">
+            <p class="eyebrow">PDF download</p>
+            <p class="title">Ambassador overview</p>
+            <p class="desc">Download the overview covering the mission, role, important considerations, and first steps.</p>
+          </div>
+        </a>
 
-      <a class="tile" href="#" aria-disabled="true">
-        <img src="/y-cam-cyntaf/assets/img/tile-downloads.png" alt="Curiosity threads tile" />
-        <div class="tiletext">
-          <p class="title">Curiosity thread collection</p>
-          <p class="desc"><em>Coming later</em></p>
-        </div>
-      </a>
-    </div>
+        <a class="tile tile--feature" href="../assets/downloads/Ambassador%20Expectations%20Framework%20-%20Tidy%20Butt.pdf" target="_blank" rel="noopener">
+          <img src="../assets/img/TB_Resources.png" alt="Abstract illustration representing the ambassador expectations framework." />
+          <div class="tiletext">
+            <p class="eyebrow">PDF download</p>
+            <p class="title">Ambassador expectations framework</p>
+            <p class="desc">Download the expectations framework covering commitment, communication, boundaries, and conduct.</p>
+          </div>
+        </a>
+      </div>
+    </section>
 
-    <p class="small" style="margin-top:14px;">
-      As the course builds, we will add accessible handouts for each session and optional curiosity threads here.
-    </p>
+    <section class="tb-download-subtle tb-contained-block" aria-labelledby="downloads-more-title">
+      <p id="downloads-more-title" class="small">
+        Add any extra PDFs into <code>assets/downloads</code>, then duplicate one of the tiles above and update the filename, title, image, and description.
+      </p>
+    </section>
   </div>
 
-  <script src="/y-cam-cyntaf/assets/js/layout.js"></script>
-  <script src="/y-cam-cyntaf/assets/js/main.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
